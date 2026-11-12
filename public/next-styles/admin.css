@@ -1,0 +1,47 @@
+
+body{background:#f1f5f9;color:#0f172a}header{background:#0f172a;color:#fff;padding:16px max(20px,calc((100vw - 1060px)/2));font-weight:800}main{max-width:1060px;margin:28px auto;padding:24px;background:#fff;border-radius:18px;box-shadow:0 10px 35px #0f172a12}h1{margin:0 0 6px}.sub{color:#64748b;margin:0 0 22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.card{border:1px solid #dbe3ed;border-radius:14px;padding:18px;margin:14px 0}.card h2{font-size:18px;margin:0 0 14px}label{display:block;font-weight:650;margin:10px 0 5px}input,select{width:100%;padding:11px;border:1px solid #bcc8d6;border-radius:9px;font:inherit}button{border:0;border-radius:9px;padding:11px 15px;background:#08785f;color:white;font-weight:750;cursor:pointer;margin-top:12px}button.secondary{background:#e8eef5;color:#1e293b}button.danger{background:#b42318;padding:7px 10px;margin:0}button:disabled{opacity:.55}.wh-check{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid #dbe3ed;border-radius:8px}.wh-check input{width:auto}ul{list-style:none;padding:0;margin:8px 0}li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px;border-top:1px solid #e7edf3;flex-wrap:wrap}.muted{color:#64748b;font-size:13px}#msg{min-height:24px;color:#b42318}.links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.pill{padding:4px 9px;border-radius:20px;background:#e7f5ef;color:#08634e;font-size:12px;font-weight:700}
+
+
+/* Warehouse creation and account grants retain separate, visible feedback. */
+html body[data-page=admin] #warehouseCard[hidden] { display:none !important; }
+html body[data-page=admin] .admin-feedback { min-height:24px; margin:12px 0 0; color:var(--ui-ink); overflow-wrap:anywhere; }
+html body[data-page=admin] #warehouseForm { margin-bottom:24px; }
+html body[data-page=admin] #newCode { text-transform:uppercase; }
+
+html body[data-page=admin] [hidden] { display:none !important; }
+html body[data-page=admin] #adminForm { margin-bottom:24px; }
+
+html body[data-page=admin] #stationQrDialog {
+  width: min(520px, calc(100% - 24px));
+  height: auto;
+  max-height: calc(100dvh - 24px);
+  text-align: center;
+  overflow-y: auto;
+}
+#stationQrDialog h2 { margin: 0 0 12px; }
+#stationQrStatus:empty { display: none; }
+#stationQrWarehouse { font-weight: 700; }
+#stationQrImage {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  margin: 0 auto;
+}
+.station-qr-actions { display: flex; justify-content: center; gap: 12px; }
+
+@media print {
+  html body[data-page=admin]:has(#stationQrDialog[open] #stationQrPoster:not([hidden])) > :not(#stationQrDialog),
+  #stationQrDialog .qr-screen-only,
+  #stationQrDialog::backdrop { display: none !important; }
+  html body[data-page=admin] #stationQrDialog[open] {
+    position: static;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+  #stationQrImage { width: 95mm; max-width: 100%; }
+}

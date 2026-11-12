@@ -1,0 +1,1561 @@
+/* Customer Service & Rider Support Styling */
+:root {
+  --cs-bg: #f8fafc;
+  --cs-surface: #ffffff;
+  --cs-border: #e2e8f0;
+  --cs-ink: #0f172a;
+  --cs-muted: #64748b;
+  --cs-primary: #059669;
+  --cs-primary-hover: #047857;
+  --cs-danger: #ef4444;
+  --cs-danger-hover: #dc2626;
+  --cs-warning-bg: #fffbeb;
+  --cs-warning-border: #fef3c7;
+  --cs-warning-text: #b45309;
+}
+
+body {
+  margin: 0;
+  background: var(--cs-bg);
+  color: var(--cs-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 14px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+header a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s;
+}
+header a:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+main {
+  max-width: 1320px;
+  margin: 24px auto 60px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.ui-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cs-primary);
+  margin: 0 0 4px 0;
+}
+
+main h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--cs-ink);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.ui-page-intro {
+  font-size: 15px;
+  color: var(--cs-muted);
+  margin: 0 0 24px 0;
+}
+
+/* Panel inside main */
+main #ifc-support-panel {
+  position: static;
+  width: 100%;
+  max-height: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  font: inherit;
+}
+
+/* Header & Duty Bar */
+#ifc-support-panel h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--cs-ink);
+}
+
+#ifc-support-panel button[aria-pressed] {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+#ifc-support-panel button[aria-pressed="true"] {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1.5px solid #a7f3d0;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15);
+}
+#ifc-support-panel button[aria-pressed="true"]::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+#ifc-support-panel button[aria-pressed="false"] {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1.5px solid #cbd5e1;
+}
+
+#ifc-support-panel .muted {
+  font-size: 13px;
+  color: var(--cs-muted);
+  margin: 4px 0 16px 0;
+}
+
+/* Call Inbox Cards */
+#ifc-support-panel [data-inbox] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.call-row {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.call-row strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cs-ink);
+}
+
+.call-row .muted {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+}
+
+.call-row button {
+  background: var(--cs-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.call-row button:hover {
+  background: var(--cs-primary-hover);
+}
+
+.call-row button.secondary,
+.btn-end-support {
+  background: #fef2f2 !important;
+  color: var(--cs-danger) !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 8px !important;
+  padding: 9px 16px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  cursor: pointer;
+}
+.call-row button.secondary:hover,
+.btn-end-support:hover {
+  background: #fee2e2 !important;
+  color: var(--cs-danger-hover) !important;
+}
+
+/* Status / Alert Message box */
+#ifc-support-panel [data-msg] {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+#ifc-support-panel [data-msg]:empty {
+  display: none !important;
+}
+#ifc-support-panel [data-msg]:not(:empty) {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#ifc-support-panel [data-msg]:not(:empty)::before {
+  content: "⚠️";
+}
+
+#ifc-support-panel [data-msg].cs-report-ok {
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #047857 !important;
+}
+#ifc-support-panel [data-msg].cs-report-ok::before {
+  content: "✓" !important;
+  font-weight: 800;
+}
+#ifc-support-panel [data-msg].cs-report-err {
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+  color: #b91c1c !important;
+}
+#ifc-support-panel [data-msg].cs-report-err::before {
+  content: "⚠️" !important;
+}
+
+/* Assist Form Card: Modern, Simple, Clean */
+[data-assist] {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+[data-assist] h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--cs-ink);
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-field label,
+.cs-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cs-muted);
+}
+
+[data-assist] input,
+.cs-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid var(--cs-border);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cs-ink);
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s;
+  background: #ffffff;
+}
+[data-assist] input:focus,
+.cs-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+[data-assist] textarea,
+.cs-textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--cs-border);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  color: #1e293b;
+  box-sizing: border-box;
+  outline: none;
+  resize: vertical;
+  transition: all 0.2s;
+  background: #ffffff;
+  line-height: 1.45;
+}
+[data-assist] textarea:focus,
+.cs-textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+[data-assist] button[type="button"],
+.cs-btn-submit {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+[data-assist] button[type="button"]:hover,
+.cs-btn-submit:hover {
+  background: linear-gradient(135deg, #047857, #065f46);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+  transform: translateY(-1px);
+}
+[data-assist] button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Success Result Banner */
+.cs-seq-badge {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  border: 2px solid #86efac;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  margin: 10px 0;
+}
+.cs-seq-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #065f46;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cs-seq-number {
+  font-size: 36px;
+  font-weight: 900;
+  color: #047857;
+  line-height: 1.1;
+  margin: 6px 0;
+}
+.cs-seq-hint {
+  font-size: 13px;
+  color: #065f46;
+}
+
+/* Multi-code counter & helper controls */
+.cs-field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.cs-codes-counter {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin: 6px 0 10px 0 !important;
+  padding: 6px 10px !important;
+  background: #f0fdf4 !important;
+  border-radius: 8px !important;
+  border: 1px solid #bbf7d0 !important;
+}
+#ifc-support-panel [data-assist] button.cs-btn-clear {
+  background: transparent !important;
+  color: #dc2626 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 3px 8px !important;
+  margin: 0 !important;
+  width: auto !important;
+  border-radius: 4px !important;
+  border: 1px solid #fecaca !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+#ifc-support-panel [data-assist] button.cs-btn-clear:hover {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+}
+.cs-textarea {
+  min-height: 120px !important;
+  line-height: 1.6 !important;
+  resize: vertical;
+}
+
+/* Sound Test Button */
+.cs-btn-soundtest {
+  background: #f0fdf4 !important;
+  color: #166534 !important;
+  border: 1.5px solid #bbf7d0 !important;
+  padding: 8px 14px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  margin-left: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+.cs-btn-soundtest:hover {
+  background: #dcfce7 !important;
+  border-color: #86efac !important;
+}
+
+/* Incoming Call Alert Banner */
+.cs-call-alert[hidden],
+#cs-incoming-call-alert[hidden] {
+  display: none !important;
+}
+
+.cs-call-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  background: #b91c1c;
+  color: #ffffff;
+  padding: 14px 22px;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(185, 28, 28, 0.45), 0 0 0 4px rgba(239, 68, 68, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 92vw;
+  width: 520px;
+  animation: cs-pulse-ring 1s infinite alternate ease-in-out;
+}
+@keyframes cs-pulse-ring {
+  0% { transform: translateX(-50%) scale(1); box-shadow: 0 10px 25px rgba(185, 28, 28, 0.35); }
+  100% { transform: translateX(-50%) scale(1.025); box-shadow: 0 14px 40px rgba(220, 38, 38, 0.65), 0 0 0 6px rgba(248, 113, 113, 0.35); }
+}
+.cs-call-alert-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.cs-call-alert-bell {
+  font-size: 28px;
+  display: inline-block;
+  animation: cs-bell-swing 0.5s infinite alternate ease-in-out;
+}
+@keyframes cs-bell-swing {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(18deg); }
+}
+.cs-call-alert-title {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.cs-call-alert-desc {
+  font-size: 13px;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+.cs-btn-silence {
+  background: #ffffff !important;
+  color: #b91c1c !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 8px 14px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+  transition: transform 0.15s, background 0.15s !important;
+}
+.cs-btn-silence:hover {
+  background: #fee2e2 !important;
+  transform: scale(1.04);
+}
+
+/* ==========================================================================
+   PRO MAX UI/UX REDESIGN: BÀN HỖ TRỢ RIDER (CUSTOMER SERVICE DESK)
+   ========================================================================== */
+
+/* Explicit [hidden] visibility rules to ensure clean toggling */
+html body[data-page] #ifc-support-panel [hidden],
+html body[data-page] #ifc-support-panel .cs-active-card[hidden],
+html body[data-page] #ifc-support-panel .cs-idle-card[hidden],
+html body[data-page] #ifc-support-panel .cs-held-section[hidden],
+html body[data-page] #ifc-support-panel [data-bottom-end][hidden] {
+  display: none !important;
+}
+
+/* Main Container & Page Typography */
+html body[data-page=support] main {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 24px 20px 60px 20px !important;
+}
+
+html body[data-page=support] .ui-kicker {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #059669 !important;
+  margin-bottom: 4px !important;
+}
+
+html body[data-page=support] h1 {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 6px 0 !important;
+}
+
+html body[data-page=support] .ui-page-intro {
+  font-size: 14px !important;
+  color: #64748b !important;
+  max-width: 720px !important;
+  margin: 0 0 24px 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* ==========================================================================
+   RESET BUTTONS FOR #ifc-support-panel (OVERRIDE SYSTEM.CSS BURNT ORANGE)
+   ========================================================================== */
+html body[data-page] #ifc-support-panel button {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  min-height: auto !important;
+  padding: 8px 16px !important;
+  box-shadow: none !important;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+}
+
+/* ==========================================================================
+   1. TOP AGENT COMMAND BAR
+   ========================================================================== */
+#ifc-support-panel .cs-header-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.cs-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1 1 480px;
+}
+
+.cs-agent-avatar {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.cs-agent-live-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+}
+
+.cs-agent-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.cs-agent-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cs-agent-email {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.cs-agent-role-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 1px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.cs-stations-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cs-stations-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.cs-stations-pills {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.cs-station-chip {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  letter-spacing: 0.02em;
+  transition: all 0.15s ease;
+}
+
+.cs-station-chip:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.cs-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Duty Switch Button */
+html body[data-page] #ifc-support-panel .cs-duty-btn {
+  padding: 8px 16px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-duty-btn.on {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border: 1px solid #a7f3d0 !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.18) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-duty-btn.on:hover {
+  background: #d1fae5 !important;
+  border-color: #6ee7b7 !important;
+  transform: translateY(-1px) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-duty-btn.off {
+  background: #fffbeb !important;
+  color: #92400e !important;
+  border: 1px solid #fde68a !important;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.12) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-duty-btn.off:hover {
+  background: #fef3c7 !important;
+  border-color: #fcd34d !important;
+}
+
+.cs-duty-pill-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.cs-duty-pill-dot.on {
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: cs-pulse-dot 2s infinite ease-in-out;
+}
+
+.cs-duty-pill-dot.off {
+  background: #f59e0b;
+}
+
+@keyframes cs-pulse-dot {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Sound Test Button */
+html body[data-page] #ifc-support-panel .cs-btn-soundtest {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 999px !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-soundtest:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+/* ==========================================================================
+   2. METRICS BAR (HORIZONTAL 3-CARD STATS GRID)
+   ========================================================================== */
+#ifc-support-panel .cs-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 840px) {
+  #ifc-support-panel .cs-metrics-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03);
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.18s ease;
+}
+
+.cs-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.06);
+  border-color: #cbd5e1;
+}
+
+.cs-metric-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.cs-metric-active .cs-metric-icon-wrap {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.cs-metric-held .cs-metric-icon-wrap {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.cs-metric-queue .cs-metric-icon-wrap {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.cs-metric-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-metric-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cs-metric-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.cs-metric-lbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.cs-metric-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.cs-metric-tag.live {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.cs-metric-tag.held {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.cs-metric-tag.queue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.cs-metric-tag.off {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   3. 2-COLUMN DESK GRID
+   ========================================================================== */
+#ifc-support-panel .cs-desk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  #ifc-support-panel .cs-desk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-workspace-col,
+.cs-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   4. ACTIVE CALL STUDIO CARD (LEFT COLUMN)
+   ========================================================================== */
+.cs-active-card {
+  background: #ffffff;
+  border: 2px solid #10b981;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15), 0 4px 6px -2px rgba(16, 185, 129, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: cs-card-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cs-card-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cs-active-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+}
+
+.cs-active-caller {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cs-caller-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 1px solid #a7f3d0;
+  flex-shrink: 0;
+}
+
+.cs-caller-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.cs-caller-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cs-caller-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cs-station-pill {
+  background: #10b981;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.cs-queue-pill {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.cs-caller-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #059669;
+}
+
+.cs-pulse-radar {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: cs-pulse-dot 1.5s infinite;
+}
+
+.cs-active-timer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.cs-timer-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.cs-timer-badge {
+  background: #0f172a;
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+}
+
+/* Call Control Toolbar */
+.cs-call-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 4px 0 16px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* 1. Mute Button */
+html body[data-page] #ifc-support-panel .cs-btn-mute {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-mute:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-mute.is-muted {
+  background: #fef2f2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-mute.is-muted:hover {
+  background: #fee2e2 !important;
+}
+
+/* 2. Hold Button */
+html body[data-page] #ifc-support-panel .cs-btn-hold {
+  background: #fffbeb !important;
+  color: #b45309 !important;
+  border: 1.5px solid #fde68a !important;
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.1) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-hold:hover {
+  background: #fef3c7 !important;
+  border-color: #fcd34d !important;
+  color: #92400e !important;
+}
+
+/* 3. End Call Button */
+html body[data-page] #ifc-support-panel .cs-btn-end {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #b91c1c !important;
+  border-radius: 12px !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  margin-left: auto !important;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-end:hover {
+  background: #b91c1c !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Guest Video Box */
+.cs-guest-video-box {
+  background: #0b1120;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+  position: relative;
+  min-height: 240px;
+}
+
+/* Assisted Form in Workspace */
+.cs-assist-workspace [data-assist] {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-assist-workspace [data-assist] h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-assist-workspace [data-assist] input,
+.cs-assist-workspace [data-assist] textarea {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  color: #0f172a !important;
+  padding: 10px 14px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.cs-assist-workspace [data-assist] input:focus,
+.cs-assist-workspace [data-assist] textarea:focus {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+  outline: none !important;
+}
+
+html body[data-page] #ifc-support-panel [data-assist] button:not(.cs-btn-clear) {
+  background: #059669 !important;
+  color: #ffffff !important;
+  border: 1px solid #047857 !important;
+  border-radius: 10px !important;
+  padding: 12px 20px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25) !important;
+}
+
+html body[data-page] #ifc-support-panel [data-assist] button:not(.cs-btn-clear):hover {
+  background: #047857 !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35) !important;
+}
+
+/* ==========================================================================
+   5. IDLE STATE WORKSPACE CARD
+   ========================================================================== */
+.cs-idle-card {
+  background: #ffffff;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 20px;
+  padding: 44px 32px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+}
+
+.cs-idle-hero {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 36px auto;
+}
+
+.cs-idle-icon-halo {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px auto;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.cs-idle-icon {
+  font-size: 38px;
+}
+
+.cs-idle-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px 0;
+}
+
+.cs-idle-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cs-idle-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .cs-idle-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-feature-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.cs-feature-card:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.cs-feature-icon {
+  font-size: 22px;
+}
+
+.cs-feature-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.cs-feature-text p {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ==========================================================================
+   6. HELD CALLS SECTION (RIGHT SIDEBAR)
+   ========================================================================== */
+.cs-held-section {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.06);
+}
+
+.cs-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cs-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.held-header .cs-section-title {
+  color: #92400e;
+}
+
+.cs-badge-held {
+  background: #d97706;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.cs-section-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.held-header .cs-section-hint {
+  color: #b45309;
+}
+
+.cs-held-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cs-held-card {
+  background: #ffffff;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.08);
+}
+
+.cs-held-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.cs-held-sub {
+  font-size: 11px;
+  color: #92400e;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.cs-held-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-resume {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: 1px solid #059669 !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-resume:hover {
+  background: #059669 !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-end-held {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border: 1px solid #fca5a5 !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-end-held:hover {
+  background: #fecaca !important;
+}
+
+/* ==========================================================================
+   7. INCOMING QUEUE SECTION (RIGHT SIDEBAR)
+   ========================================================================== */
+.cs-queue-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+}
+
+.cs-badge-queue {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.cs-queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cs-queue-list .call-row {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: all 0.15s ease;
+}
+
+.cs-queue-list .call-row:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.cs-queue-list .call-row strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cs-queue-list .call-row .muted {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-accept-call {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: 1px solid #059669 !important;
+  border-radius: 10px !important;
+  padding: 9px 18px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25) !important;
+  transition: all 0.15s ease !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-accept-call:hover:not(:disabled) {
+  background: #059669 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+html body[data-page] #ifc-support-panel .cs-btn-accept-call:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Empty State */
+.cs-queue-empty {
+  padding: 36px 20px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px dashed #e2e8f0;
+  border-radius: 14px;
+}
+
+.cs-queue-empty .empty-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 auto 10px auto;
+}
+
+.cs-queue-empty .empty-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Toast Message */
+.cs-report-box {
+  margin: 0 0 16px 0;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  display: none;
+}
+
+.cs-report-box:not(:empty) {
+  display: block;
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+html body[data-page=support] .cs-team-section { border:1px solid var(--ui-border); border-radius:12px; padding:18px; background:var(--ui-subtle); }
+html body[data-page=support] .cs-team-section[hidden] { display:none !important; }
+html body[data-page=support] .cs-team-section h3 { margin:0 0 8px; font-size:17px; }
+html body[data-page=support] .cs-team-owner { overflow-wrap:anywhere; font-size:13px; font-weight:600; }
+html body[data-page=support] .cs-btn-accept-call:disabled { opacity:.55; cursor:default; }

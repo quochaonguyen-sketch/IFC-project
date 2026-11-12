@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VNWL - Công cụ Upload / Download Location</title>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+*{box-sizing:border-box} html,body{height:100%}
+body{font-family:Arial,"Segoe UI",Tahoma,sans-serif;background:#f5f7fb;color:#111827;margin:0;padding:16px;overflow:auto}
+.wrap{max-width:1200px;margin:0 auto}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:15px;box-shadow:0 2px 10px rgba(15,23,42,.08)}
+h1{margin:0 0 8px;color:#ea580c;font-size:25px} h2{margin:0 0 10px;font-size:20px;color:#0f172a}
+.muted{font-size:13px;color:#64748b;line-height:1.5}.ok{color:#15803d;font-weight:700}.bad{color:#dc2626;font-weight:700}.warn{color:#ca8a04;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;align-items:end}
+label{font-weight:700;display:block;margin:7px 0 4px} input,select{padding:10px;border:1px solid #cbd5e1;border-radius:8px;min-height:40px;width:100%;background:#fff}
+button{border:0;border-radius:9px;padding:11px 14px;background:#ea580c;color:#fff;font-weight:700;cursor:pointer;margin:7px 7px 7px 0;min-height:40px}button:disabled{opacity:.58;cursor:not-allowed}button.green{background:#16a34a}button.blue{background:#2563eb}button.gray{background:#475569}button.red{background:#dc2626}
+.session{margin-top:10px;padding:10px 12px;border-radius:12px;background:#ecfeff;border:1px solid #a5f3fc;color:#155e75;font-size:13px}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;margin-top:10px}
+.upload-warning{display:none;margin:10px 0 8px;padding:11px 13px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412;font-size:14px;font-weight:800;line-height:1.45}.upload-warning .small{display:block;margin-top:3px;font-size:12px;font-weight:700;color:#c2410c}.upload-warning strong{color:#7c2d12}
+.progress-wrap{display:none;margin:10px 0 8px;padding:10px 12px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px}.progress-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:800;color:#334155;margin-bottom:7px}.progress-bar{height:16px;background:#e2e8f0;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(15,23,42,.12)}.progress-bar>div{height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#22c55e);border-radius:999px;transition:width .18s ease}.progress-detail{margin-top:7px;font-size:12px;color:#64748b;line-height:1.35}
+.table-wrap{max-height:340px;overflow:auto;border:1px solid #e2e8f0;border-radius:10px;margin-top:12px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid #e2e8f0;padding:7px;text-align:left;white-space:nowrap}th{position:sticky;top:0;background:#fff7ed;color:#9a3412;z-index:1}
+#message{margin-top:12px;padding:10px 12px;border-radius:10px;background:#eff6ff;white-space:pre-wrap;font-size:14px}.busy{display:none;position:fixed;right:18px;bottom:18px;background:#0f172a;color:#fff;padding:13px 15px;border-radius:14px;box-shadow:0 16px 42px rgba(0,0,0,.28);z-index:100}
+.spinner{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .8s linear infinite;margin-right:7px;vertical-align:-2px}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:700px){body{padding:10px}.card{padding:12px}h1{font-size:21px}button{width:100%;margin:5px 0}.toolbar{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>📍 VNWL - Công cụ Upload / Download Location</h1>
+    <div class="session"><b>Phiên làm việc:</b> <span id="authStatus">Đang kiểm tra đăng nhập từ app VNWL...</span></div>
+    <p class="muted">Dữ liệu chỉ phục vụ quy trình trong ngày hiện tại. Qua ngày mới app không dùng lại dữ liệu cũ.</p>
+  </div>
+  <div class="card">
+    <h2>1) Tải template location</h2>
+    <div class="grid"><div><label>Kho</label><select id="warehouse"><option>WH1</option><option>WH2</option><option>WH3</option><option>WH4</option><option>WH5</option></select></div></div>
+    <button id="downloadBlank" class="green" type="button">Tải template rỗng 4 cột</button>
+    <button id="downloadFull" class="gray" type="button">Tải dữ liệu hiện tại</button>
+    <p class="muted">Template đúng gồm 4 cột theo thứ tự: <b>Mã vận đơn | Mã đơn hàng Shopee | Location | Sub</b>. <b>Cả 4 cột bắt buộc có dữ liệu</b>; Sub là số từ <b>1 đến 40</b>. Đơn đã bàn giao sẽ trả lại Sub cho đơn mới.</p>
+  </div>
+  <div class="card">
+    <h2>2) Upload file cập nhật location</h2>
+    <input id="fileInput" type="file" accept=".xlsx,.xls,.csv" />
+    <div class="toolbar">
+      <button id="preview" class="blue" type="button">Preview file</button>
+      <button id="confirm" class="red" type="button">Xác nhận update location</button>
+      <span id="toolbarStatus" class="muted">Chọn file template đã nhập dữ liệu.</span>
+    </div>
+    <div id="uploadWarning" class="upload-warning" role="alert">⚠️ <strong>Hệ thống đang upload dữ liệu lên Server.</strong> Vui lòng không đóng popup, không refresh trình duyệt, không out màn hình và hạn chế chuyển tab cho đến khi Upload đạt 100%.<span class="small" id="uploadWarningDetail">Nếu cần chuyển tab, hệ thống sẽ tạm dừng trước batch kế tiếp và tự chạy tiếp khi quay lại.</span></div>
+    <div id="uploadProgressWrap" class="progress-wrap" aria-live="polite">
+      <div class="progress-meta"><span id="uploadProgressText">Upload: 0%</span><span id="uploadProgressCount">0/0 dòng</span></div>
+      <div class="progress-bar"><div id="uploadProgressBar"></div></div>
+      <div id="uploadProgressDetail" class="progress-detail">Chưa bắt đầu upload.</div>
+    </div>
+    <p class="muted">Rule: mã vận đơn mới sẽ được tạo trên hệ thống; mã đã có đang chuẩn bị sẽ cập nhật Mã đơn hàng/Location/Sub; mã đang HOLD/Đã pick không được chuyển Location/Sub; một Location + Sub chỉ giữ một đơn active; đơn đã bàn giao trả Sub trống ngay.</p>
+    <div id="previewBox"></div>
+    <div id="message">Sẵn sàng.</div>
+  </div>
+  <div class="card"><h2>Nhật ký thao tác</h2><div id="log" class="muted">Công cụ đã mở.</div></div>
+</div>
+<div class="busy" id="busy"><span class="spinner"></span><span id="busyText">Đang xử lý...</span></div>
+<script src="/vnwl_config.js"></script>
+<script type="module">
+import { initializeApp, getAuth, onAuthStateChanged, apiPost, apiGet } from './firebase_adapter.js';
+const firebaseConfig={apiKey:'AIzaSyC3hM3n4YLDaY8xiQso6kD2Y5GWHXgelSk',authDomain:'vnwl-warehouse-app.firebaseapp.com',projectId:'vnwl-warehouse-app',storageBucket:'vnwl-warehouse-app.firebasestorage.app',messagingSenderId:'280134256131',appId:'1:280134256131:web:75a109f9190094d3507036'};
+initializeApp(firebaseConfig); const auth=getAuth(); let previewRows=[];
+const $=id=>document.getElementById(id); const clean=v=>String(v??'').trim();
+function esc(v){ return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function note(text,type=''){ $('message').textContent=text; $('message').style.background=type==='bad'?'#fee2e2':type==='ok'?'#dcfce7':'#eff6ff'; $('message').style.color=type==='bad'?'#991b1b':type==='ok'?'#166534':'#1e3a8a'; $('log').textContent=new Date().toLocaleTimeString('vi-VN')+' - '+text; }
+function busy(show,text='Đang xử lý...'){ $('busy').style.display=show?'block':'none'; $('busyText').textContent=text; }
+const UPLOAD_CHUNK_SIZE = 25;
+function setUploadButtonsDisabled(disabled){ ['preview','confirm','downloadBlank','downloadFull','fileInput','warehouse'].forEach(id=>{ const el=$(id); if(el) el.disabled=!!disabled; }); }
+function setUploadWarning(show,detail=''){ const box=$('uploadWarning'); if(!box) return; box.style.display=show?'block':'none'; const d=$('uploadWarningDetail'); if(d) d.textContent=detail || 'Nếu cần chuyển tab, hệ thống sẽ tạm dừng trước batch kế tiếp và tự chạy tiếp khi quay lại.'; }
+function setUploadProgress(show,done=0,total=0,detail=''){ const wrap=$('uploadProgressWrap'); if(!wrap) return; wrap.style.display=show?'block':'none'; const safeTotal=Math.max(0,Number(total)||0); const safeDone=Math.min(safeTotal,Math.max(0,Number(done)||0)); const percent=safeTotal?Math.round((safeDone/safeTotal)*100):(show?0:0); $('uploadProgressBar').style.width=percent+'%'; $('uploadProgressText').textContent='Upload: '+percent+'%'; $('uploadProgressCount').textContent=safeDone+'/'+safeTotal+' dòng'; $('uploadProgressDetail').textContent=detail || (show?'Đang chuẩn bị upload...':'Chưa bắt đầu upload.'); }
+function sleep(ms){ return new Promise(resolve=>setTimeout(resolve,ms)); }
+let uploadInProgress=false;
+let lastUploadProgress={done:0,total:0,detail:''};
+function setLastUploadProgress(done,total,detail){ lastUploadProgress={done:Number(done)||0,total:Number(total)||0,detail:String(detail||'')}; }
+function waitForUploadTabVisible(detail='',done=null,total=null){
+  if(!document.hidden) return Promise.resolve();
+  const d=done==null?lastUploadProgress.done:done;
+  const t=total==null?lastUploadProgress.total:total;
+  setUploadProgress(true,d,t,detail || 'Tab đang ẩn nên hệ thống tạm dừng upload để tránh mất kết nối. Quay lại tab này để tự tiếp tục.');
+  $('toolbarStatus').textContent='Upload tạm dừng vì tab đang ẩn...';
+  return new Promise(resolve=>{
+    const onVisible=()=>{
+      if(!document.hidden){
+        document.removeEventListener('visibilitychange',onVisible);
+        $('toolbarStatus').textContent='Đã quay lại tab. Đang tiếp tục upload...';
+        setUploadProgress(true,d,t,'Đã quay lại tab. Hệ thống tiếp tục upload batch kế tiếp...');
+        resolve();
+      }
+    };
+    document.addEventListener('visibilitychange',onVisible);
+  });
+}
+document.addEventListener('visibilitychange',()=>{
+  if(uploadInProgress && document.hidden){
+    setUploadProgress(true,lastUploadProgress.done,lastUploadProgress.total,'Tab đang ẩn nên upload sẽ tạm dừng trước batch kế tiếp để tránh mất kết nối.');
+  }
+});
+window.addEventListener('beforeunload',(e)=>{
+  if(uploadInProgress){
+    e.preventDefault();
+    e.returnValue='Upload location đang chạy. Đóng tab có thể làm gián đoạn tiến trình.';
+  }
+});
+function normHeader(v){ return clean(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[\s_\-\.\/]+/g,''); }
+const aliases={ tracking:['mavandon','madon','tracking','trackingno','ordercode','barcode'], orderSn:['madonhang','madonhangshopee','ordersn','shopeeordersn'], location:['location','vitri','locationcode','locationbase','loc'], sub:['sub','subcode','slot','bin'] };
+function pick(obj,list){ const map={}; Object.keys(obj).forEach(k=>map[normHeader(k)]=obj[k]); for(const x of list){ if(Object.prototype.hasOwnProperty.call(map,x)) return clean(map[x]); } return ''; }
+function normalizedRow(obj,rowNo){ return { __row_no:rowNo, tracking_no:pick(obj,aliases.tracking), order_sn:pick(obj,aliases.orderSn), location:pick(obj,aliases.location), sub:pick(obj,aliases.sub) }; }
+function validate(rows){ const out=[]; const seenTracking=new Map(); const seenSlot=new Map(); rows.forEach((r,i)=>{ const row=r.__row_no||i+2; if(!r.tracking_no) out.push(`Dòng ${row}: thiếu Mã vận đơn`); if(!r.order_sn) out.push(`Dòng ${row}: thiếu Mã đơn hàng`); if(!r.location) out.push(`Dòng ${row}: thiếu Location`); if(!r.sub) out.push(`Dòng ${row}: thiếu Sub`); else if(!/^\d+$/.test(r.sub)||Number(r.sub)<1||Number(r.sub)>40) out.push(`Dòng ${row}: Sub phải là số từ 1 đến 40`); if(r.tracking_no){ if(seenTracking.has(r.tracking_no)) out.push(`Dòng ${row}: trùng Mã vận đơn với dòng ${seenTracking.get(r.tracking_no)}`); else seenTracking.set(r.tracking_no,row); } const slot=r.location&&r.sub?(r.location+'||'+r.sub).toUpperCase():''; if(slot){ if(seenSlot.has(slot)) out.push(`Dòng ${row}: trùng Location + Sub với dòng ${seenSlot.get(slot)}`); else seenSlot.set(slot,row); } }); return out; }
+function workbookRows(items){ return (items||[]).map(r=>[clean(r.tracking_no||r.order_code),clean(r.order_sn||r.shopee_order_sn||r.cloud_d0_aux2_order_sn),clean(r.location_base||r.location||r.location_code),clean(r.sub_code||r.sub)]); }
+function downloadWorkbook(items,name){ if(!window.XLSX) throw new Error('Không tải được thư viện Excel.'); const ws=XLSX.utils.aoa_to_sheet([['Mã vận đơn','Mã đơn hàng Shopee','Location','Sub'],...workbookRows(items)]); const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Location'); XLSX.writeFile(wb,name); }
+function render(rows){ const issues=validate(rows); const preview=rows.slice(0,100); $('previewBox').innerHTML=`<p><b>Số dòng:</b> ${rows.length} ${issues.length?`— <span class="bad">Lỗi: ${issues.length}</span>`:'— <span class="ok">Hợp lệ</span>'}</p>${issues.length?`<p class="bad">${esc(issues.slice(0,8).join('; '))}</p>`:''}<div class="table-wrap"><table><thead><tr><th>#</th><th>Mã vận đơn</th><th>Mã đơn hàng Shopee</th><th>Location</th><th>Sub</th></tr></thead><tbody>${preview.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.tracking_no)}</td><td>${esc(r.order_sn)}</td><td>${esc(r.location)}</td><td>${esc(r.sub)}</td></tr>`).join('')}</tbody></table></div>`; }
+async function currentUser(){ if(auth.currentUser) return auth.currentUser; return new Promise(resolve=>{ const timer=setTimeout(()=>resolve(auth.currentUser),4000); const off=onAuthStateChanged(auth,u=>{ clearTimeout(timer); off(); resolve(u); }); }); }
+onAuthStateChanged(auth,user=>{ $('authStatus').textContent=user?`Đã đăng nhập: ${user.email}`:'Chưa có phiên đăng nhập. Đóng popup, đăng nhập VNWL rồi mở lại.'; });
+$('downloadBlank').onclick=()=>{ try{ downloadWorkbook([],`VNWL_Template_Location_4Cot_${$('warehouse').value}.xlsx`); note('Đã tải template rỗng 4 cột.','ok'); }catch(e){ note('Lỗi tải template: '+e.message,'bad'); } };
+$('downloadFull').onclick=async()=>{ try{ busy(true,'Đang tải dữ liệu...'); const r=await apiGet(`/api/location/export/full?warehouse=${encodeURIComponent($('warehouse').value)}`); downloadWorkbook(r.items||[],`VNWL_LOCATION_${$('warehouse').value}_${new Date().toISOString().slice(0,10)}.xlsx`); note('Đã tải dữ liệu hiện tại theo mẫu 4 cột.','ok'); }catch(e){ note('Lỗi tải dữ liệu: '+e.message,'bad'); } finally{ busy(false); } };
+$('preview').onclick=async()=>{ setUploadProgress(false); const file=$('fileInput').files[0]; if(!file){ note('Vui lòng chọn file Excel/CSV trước.','bad'); return; } try{ busy(true,'Đang đọc file upload...'); const wb=XLSX.read(await file.arrayBuffer(),{type:'array',raw:false}); const ws=wb.Sheets[wb.SheetNames[0]]; const aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false,blankrows:false}); const hIdx=aoa.findIndex(row=>Array.isArray(row)&&row.some(c=>aliases.tracking.includes(normHeader(c)))&&row.some(c=>aliases.location.includes(normHeader(c)))); if(hIdx<0) throw new Error('Không tìm thấy tiêu đề. File phải có: Mã vận đơn | Mã đơn hàng Shopee | Location | Sub.'); const headers=aoa[hIdx].map(c=>clean(c)); previewRows=[]; for(let i=hIdx+1;i<aoa.length;i++){ const arr=aoa[i]||[]; if(!arr.some(v=>clean(v))) continue; const obj={}; headers.forEach((h,x)=>{ if(h) obj[h]=arr[x]??''; }); previewRows.push(normalizedRow(obj,i+1)); } render(previewRows); const errors=validate(previewRows); setUploadProgress(true,0,previewRows.length, errors.length?`Preview có ${errors.length} lỗi. Sửa file trước khi upload.`:`Đã preview ${previewRows.length} dòng. Sẵn sàng upload theo batch 25 dòng/lần.`); note(errors.length?`Preview có ${errors.length} lỗi. Sửa file trước khi upload.`:`Preview hợp lệ: ${previewRows.length} dòng sẵn sàng upload.`,errors.length?'bad':'ok'); }catch(e){ note('Lỗi preview: '+e.message,'bad'); } finally{ busy(false); } };
+
+async function postLocationBatchWithRetry(payload, batchNo){
+  let lastErr = null;
+  for (let attempt = 1; attempt <= 2; attempt++){
+    await waitForUploadTabVisible(`Tab đang ẩn. Tạm dừng trước batch ${batchNo}/${payload.batch_count}; quay lại tab này để tiếp tục.`, Number(payload.batch_start)||0, Number(payload.total_rows)||0);
+    try{
+      return await apiPost('/api/location/update_slots', payload, { timeoutMs: 60000 });
+    }catch(e){
+      lastErr = e;
+      const msg = String(e && e.message || e || '');
+      if(document.hidden){
+        setUploadProgress(true, Math.max(0, Number(payload.batch_start)||0), Math.max(0, Number(payload.total_rows)||0), `Batch ${batchNo}/${payload.batch_count} mất kết nối vì tab bị ẩn. Quay lại tab này để thử lại batch này...`);
+        await waitForUploadTabVisible('', Number(payload.batch_start)||0, Number(payload.total_rows)||0);
+        attempt--;
+        continue;
+      }
+      setUploadProgress(true, Math.max(0, Number(payload.batch_start)||0), Math.max(0, Number(payload.total_rows)||0), `Batch ${batchNo}/${payload.batch_count} lỗi lần ${attempt}: ${msg}${attempt < 2 ? ' — đang thử lại...' : ''}`);
+      if (attempt < 2) await sleep(700);
+    }
+  }
+  throw lastErr || new Error('UPLOAD_BATCH_FAILED');
+}
+$('confirm').onclick=async()=>{
+  let totalCreated = 0;
+  let totalUpdated = 0;
+  let totalNoChange = 0;
+  let totalAccepted = 0;
+  let allServerErrors = [];
+  try{
+    const user=await currentUser();
+    if(!user){ note('Vui lòng đăng nhập VNWL trước khi upload.','bad'); return; }
+    if(!previewRows.length){ note('Hãy Preview file trước khi xác nhận upload.','bad'); return; }
+    const errors=validate(previewRows);
+    if(errors.length){ note(`File còn ${errors.length} lỗi. Không upload để tránh sai dữ liệu.`, 'bad'); return; }
+    if(!confirm(`Xác nhận upload ${previewRows.length} dòng?\n\nHệ thống sẽ upload theo từng batch 25 dòng để tránh đứng màn hình và timeout. Nếu chuyển tab, upload sẽ tạm dừng và tự tiếp tục khi quay lại.\nMã mới sẽ được tạo; mã đang chuẩn bị sẽ cập nhật location/sub.`)) return;
+    const total = previewRows.length;
+    const batchCount = Math.ceil(total / UPLOAD_CHUNK_SIZE);
+    busy(true,'Đang ghi dữ liệu lên Server...');
+    uploadInProgress=true;
+    setUploadButtonsDisabled(true);
+    setUploadProgress(true,0,total,`Bắt đầu upload ${total} dòng theo ${batchCount} batch. Không đóng popup trong lúc upload. Nếu chuyển tab, hệ thống sẽ tạm dừng và tự chạy tiếp khi quay lại.`);
+    setLastUploadProgress(0,total,`Bắt đầu upload ${total} dòng theo ${batchCount} batch.`);
+    for(let start=0,batchNo=1; start<total; start+=UPLOAD_CHUNK_SIZE,batchNo++){
+      await waitForUploadTabVisible(`Tab đang ẩn. Tạm dừng trước batch ${batchNo}/${batchCount}; quay lại tab này để tiếp tục.`, start, total);
+      const end = Math.min(start + UPLOAD_CHUNK_SIZE, total);
+      const chunk = previewRows.slice(start,end);
+      const detail = `Đang upload batch ${batchNo}/${batchCount} — dòng ${start+1} đến ${end}...`;
+      setUploadProgress(true,start,total,detail);
+      setLastUploadProgress(start,total,detail);
+      $('toolbarStatus').textContent = `Đang upload batch ${batchNo}/${batchCount}...`;
+      setUploadWarning(true,`Đang upload batch ${batchNo}/${batchCount} — dòng ${start+1} đến ${end}. Vui lòng không đóng/out màn hình cho đến khi đạt 100%.`);
+      const r=await postLocationBatchWithRetry({warehouse:$('warehouse').value,rows:chunk,batch_no:batchNo,batch_count:batchCount,batch_start:start,batch_size:chunk.length,total_rows:total}, batchNo);
+      totalCreated += Number(r.created || 0);
+      totalUpdated += Number(r.updated || 0);
+      totalNoChange += Number(r.no_change || r.noChange || 0);
+      totalAccepted += Number(r.count || 0);
+      if(Array.isArray(r.errors) && r.errors.length) allServerErrors = allServerErrors.concat(r.errors.map(e=>({...e,batch_no:batchNo})));
+      setUploadProgress(true,end,total,`Đã upload batch ${batchNo}/${batchCount}. Đã gửi ${end}/${total} dòng; Server nhận ${totalAccepted} dòng hợp lệ. Tạo mới: ${totalCreated}; cập nhật: ${totalUpdated}; không đổi: ${totalNoChange}.`);
+      setLastUploadProgress(end,total,`Đã upload batch ${batchNo}/${batchCount}. Đã gửi ${end}/${total} dòng; Server nhận ${totalAccepted} dòng hợp lệ. Không đổi: ${totalNoChange}.`);
+      await sleep(80);
+    }
+    setUploadProgress(true,total,total,`Hoàn tất 100%. Server nhận ${totalAccepted} dòng hợp lệ. Tạo mới: ${totalCreated}; cập nhật: ${totalUpdated}; không đổi: ${totalNoChange}; lỗi/chặn: ${allServerErrors.length}.`);
+    if(allServerErrors.length){
+      render(previewRows);
+      const first = allServerErrors[0] || {};
+      note(`Đã upload xong 100%. Server nhận ${totalAccepted} dòng; có ${allServerErrors.length} dòng bị chặn. Dòng đầu: ${first.error||'Lỗi dữ liệu'}.`, 'bad');
+    } else {
+      note(`Update thành công 100%. Tạo mới: ${totalCreated}; cập nhật: ${totalUpdated}; không thay đổi: ${totalNoChange}.`, 'ok');
+    }
+    window.parent?.postMessage({type:'VNWL_LOCATION_UPLOAD_DONE',created:totalCreated,updated:totalUpdated,no_change:totalNoChange,released:0},'*');
+  }catch(e){
+    note('Lỗi upload: '+e.message,'bad');
+    const doneText = totalAccepted ? `Đã nhận ${totalAccepted} dòng trước khi lỗi.` : 'Chưa ghi được dòng nào hoặc chưa xác định được số dòng đã ghi.';
+    setUploadProgress(true, Math.min(previewRows.length, totalAccepted), previewRows.length, doneText+' Vui lòng kiểm tra Server/Worker rồi upload lại; hệ thống sẽ cập nhật các dòng đã có, không tạo trùng mã vận đơn.');
+  } finally{
+    uploadInProgress=false;
+    setUploadWarning(false);
+    busy(false);
+    setUploadButtonsDisabled(false);
+    $('toolbarStatus').textContent='Chọn file template đã nhập dữ liệu.';
+  }
+};
+</script>
+</body></html>

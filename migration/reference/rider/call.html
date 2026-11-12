@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gọi hỗ trợ IFC</title>
+  <link rel="stylesheet" href="/auth.css">
+  <link rel="stylesheet" href="/support/guest-video.css?v=0.7.0">
+  <style>.ifc-browser-help{border:1px solid #b7d3c8;border-radius:12px;padding:16px;margin-bottom:18px}.ifc-browser-open{display:inline-block;background:#086852;color:white;padding:12px;border-radius:8px;text-decoration:none}.ifc-browser-help summary{cursor:pointer;font-weight:700}[hidden]{display:none!important}</style>
+</head>
+<body>
+<main>
+  <h1>Gọi hỗ trợ IFC</h1>
+  <div id="browser-help"></div>
+  <section id="call-content" hidden>
+    <p id="state" role="status">Đang gọi lễ tân của station…</p>
+    <section id="join" hidden></section>
+    <p>Khi lễ tân nhận lượt, điện thoại sẽ xin quyền camera và micro. Nếu chưa thấy hộp thoại, bấm Bật camera / micro.</p>
+    <p>Nhân viên sẽ hướng dẫn bạn nhập mã cuối đơn. Sau khi được hỗ trợ, bấm Quay lại nhập đơn ở phía trên.</p>
+    <button id="end">Hủy / kết thúc yêu cầu IFC</button>
+  </section>
+  <noscript>Hãy bật JavaScript hoặc mở link bằng trình duyệt mặc định để gọi lễ tân.</noscript>
+</main>
+<script type="module" src="/rider/call.js?v=0.7.0"></script>
+</body>
+</html>

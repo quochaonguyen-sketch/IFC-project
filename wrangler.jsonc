@@ -1,0 +1,48 @@
+{
+  "name": "ifc-01-handover-pilot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-03",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./out",
+    "run_worker_first": [
+      "/api/*",
+      "/v1/*",
+      "/health"
+    ],
+    "not_found_handling": "404-page"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "ROOMS",
+        "class_name": "VnwlRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "VnwlRoom"
+      ]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ifc-01-handover-pilot-db",
+      "database_id": "21bea648-c0d7-48ed-a823-cff382bdd2fd"
+    }
+  ],
+  "vars": {
+    "FIREBASE_PROJECT_ID": "sdd-local-app",
+    "KIOSK_WAREHOUSE": "WH1"
+  },
+  "triggers": {
+    "crons": [
+      "0 23 * * *"
+    ]
+  }
+}

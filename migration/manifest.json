@@ -1,0 +1,199 @@
+[
+  {
+    "name": "desktop",
+    "route": "/",
+    "reference": "migration/reference/index.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/next-styles/desktop.css?v=0.8.9"
+    ],
+    "scripts": [
+      {
+        "src": "/next-runtime/ready.js"
+      },
+      {
+        "src": "/vendor/qr.js"
+      },
+      {
+        "src": "/next-runtime/desktop-1.js?v=0.8.1"
+      },
+      {
+        "src": "/vnwl_config.js"
+      },
+      {
+        "src": "/next-runtime/desktop-2.js?v=0.8.1",
+        "type": "module"
+      }
+    ],
+    "visualTheme": "legacy",
+    "removedIds": [
+      "newOrderSn"
+    ]
+  },
+  {
+    "name": "mobile",
+    "route": "/mobile/",
+    "reference": "migration/reference/mobile/index.html",
+    "bodyClass": "mobile-handover-only",
+    "stylesheets": [
+      "/next-styles/mobile.css?v=0.8.9"
+    ],
+    "scripts": [
+      {
+        "src": "/next-runtime/ready.js"
+      },
+      {
+        "src": "/vendor/qr.js"
+      },
+      {
+        "src": "/vnwl_config.js"
+      },
+      {
+        "src": "/next-runtime/mobile-1.js?v=0.8.7",
+        "type": "module"
+      }
+    ],
+    "visualTheme": "legacy",
+    "removedIds": [
+      "holdDriverName",
+      "btnClearHoldDriverName",
+      "suffixContainer",
+      "btnAddSuffix",
+      "btnCheckOrders",
+      "btnOcrScanLocation",
+      "btnCameraScanLocation",
+      "btnCreateHoldTicket",
+      "btnPrintPickList",
+      "handoverTable",
+      "btnHoldFromModal"
+    ]
+  },
+  {
+    "name": "admin",
+    "route": "/admin/",
+    "reference": "migration/reference/admin/index.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/auth.css",
+      "/next-styles/admin.css?v=0.8.14"
+    ],
+    "scripts": [
+      {
+        "src": "/vendor/qr.js"
+      },
+      {
+        "src": "/admin/admin.js?v=0.8.14",
+        "type": "module"
+      }
+    ]
+  },
+  {
+    "name": "login",
+    "route": "/login/",
+    "reference": "migration/reference/login/index.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/auth.css",
+      "/next-styles/login.css"
+    ],
+    "scripts": [
+      {
+        "src": "/login/login.js?v=0.7.0",
+        "type": "module"
+      }
+    ]
+  },
+  {
+    "name": "kiosk",
+    "route": "/kiosk/",
+    "reference": "migration/reference/kiosk/index.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/next-styles/kiosk.css"
+    ],
+    "scripts": [
+      {
+        "src": "/vendor/qr.js"
+      },
+      {
+        "src": "/kiosk/app.js",
+        "type": "module"
+      },
+      {
+        "src": "/support/support.js?v=0.8.6",
+        "type": "module"
+      }
+    ]
+  },
+  {
+    "name": "rider",
+    "route": "/rider/",
+    "reference": "migration/reference/rider/index.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/rider/pickup.css?v=0.7.0",
+      "/next-styles/rider.css?v=0.8.11"
+    ],
+    "scripts": [
+      {
+        "src": "/rider/rider.js?v=0.8.13",
+        "type": "module"
+      }
+    ]
+  },
+  {
+    "name": "support",
+    "route": "/support/",
+    "reference": "migration/reference/support/index.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/support/guest-video.css?v=0.7.6",
+      "/next-styles/support.css?v=0.8.6"
+    ],
+    "scripts": [
+      {
+        "src": "/support/support.js?v=0.8.6",
+        "type": "module"
+      }
+    ]
+  },
+  {
+    "name": "rider-call",
+    "route": "/rider/call/",
+    "reference": "migration/reference/rider/call.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/auth.css",
+      "/support/guest-video.css?v=0.7.0",
+      "/next-styles/rider-call.css?v=0.8.10"
+    ],
+    "scripts": [
+      {
+        "src": "/rider/call.js?v=0.8.10",
+        "type": "module"
+      }
+    ]
+  },
+  {
+    "name": "location-tools",
+    "route": "/location-tools/",
+    "reference": "migration/reference/location_tools.html",
+    "bodyClass": "",
+    "stylesheets": [
+      "/next-styles/location-tools.css?v=0.8.1"
+    ],
+    "scripts": [
+      {
+        "src": "/vendor/xlsx.full.min.js"
+      },
+      {
+        "src": "/vnwl_config.js"
+      },
+      {
+        "src": "/next-runtime/location-tools-1.js?v=0.8.1",
+        "type": "module"
+      }
+    ],
+    "visualTheme": "legacy"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "name": "ifc-01-handover-nextjs",
+  "version": "0.7.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:ui": "next dev",
+    "build": "next build && node scripts/postbuild.mjs",
+    "start": "wrangler dev --ip 127.0.0.1 --port 8787",
+    "deploy": "npm run build && wrangler deploy",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
+    "test": "node test/migration.mjs && node test/login-route.mjs && node --experimental-transform-types test/workflow.mjs && node test/firebase.mjs && node test/turn.mjs && node test/rider-ui.mjs && node test/support-ui.mjs && node test/hold-ui.mjs && node test/legacy-ui.mjs && node test/shopee-entry.mjs && node test/pickup-ui.mjs && node test/rider-voice.mjs && node test/voice.mjs && node test/admin-ui.mjs",
+    "test:export": "node test/export.mjs",
+    "test:smoke": "node test/smoke.mjs",
+    "vendor": "node vendor.mjs",
+    "voice": "node scripts/voice.mjs"
+  },
+  "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
+    "esbuild": "^0.25.0",
+    "html5-qrcode": "2.3.8",
+    "jose": "^5.9.6",
+    "qrcode": "1.5.4",
+    "tesseract.js": "5.1.1",
+    "xlsx": "0.18.5",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261102.1",
+    "text2wav": "0.0.14",
+    "typescript": "^5.8.3",
+    "wrangler": "4.156.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "parse5": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "packageManager": "pnpm@11.25.0"
+}

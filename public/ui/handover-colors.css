@@ -1,0 +1,52 @@
+/* Handover palette from IFC_01_Handover_Cloudflare_v0.7.0_FULL.zip.
+   These scopes exclude Customer Service and rider registration. */
+body:is([data-page="desktop"], [data-page="mobile"]) :is(#pageHandover, #handoverModal, #holdBoxModal, #holdQrModal, #sortingPickModal, #handoverSuccessModal, #cameraScannerModal, #ocrScanModal, #resultPopup) {
+  --handover-blue: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  --handover-green: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+  --handover-red: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  --handover-orange: linear-gradient(180deg, #f59e0b 0%, #ea580c 100%);
+  --handover-dark: linear-gradient(180deg, #475569 0%, #334155 100%);
+  --handover-gray: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+  --handover-camera: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  --handover-camera-light: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 100%);
+}
+
+/* Keep the existing layout, controls, visibility and media behavior. */
+body:is([data-page="desktop"], [data-page="mobile"]) :is(#pageHandover, #handoverModal, #holdBoxModal, #holdQrModal, #sortingPickModal, #handoverSuccessModal, #cameraScannerModal, #ocrScanModal, #resultPopup) button {
+  background: var(--handover-button, var(--handover-blue)) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  border-radius: 14px !important;
+  font-weight: 800 !important;
+}
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-blue { --handover-button: var(--handover-blue); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-green { --handover-button: var(--handover-green); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-red { --handover-button: var(--handover-red); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-orange { --handover-button: var(--handover-orange); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-dark { --handover-button: var(--handover-dark); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-gray { --handover-button: var(--handover-gray); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-purple { --handover-button: #7c3aed; }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-camera { --handover-button: var(--handover-camera); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-camera-light { --handover-button: var(--handover-camera-light); }
+body:is([data-page="desktop"], [data-page="mobile"]) .btn-disabled-action { --handover-button: #9ca3af; }
+body:is([data-page="desktop"], [data-page="mobile"]) :is(#pageHandover, #handoverModal, #holdBoxModal, #holdQrModal, #sortingPickModal, #handoverSuccessModal, #cameraScannerModal, #ocrScanModal, #resultPopup) button:hover:not(:disabled) { filter: brightness(.97) !important; }
+
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .hold-ticket-card {
+  background: linear-gradient(180deg, #fff 0%, #fcfdff 100%) !important;
+  border: 1px solid #dbeafe !important;
+  border-left: 6px solid #2563eb !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, .07) !important;
+}
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .hold-ticket-card:nth-child(even) { border-left-color: #f59e0b !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .hold-ticket-head { border-bottom: 1px dashed #cbd5e1; font-weight: 900 !important; color: #111827 !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .hold-ticket-detail summary { color: #1d4ed8 !important; font-weight: 900 !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .hold-operator-line { color: #374151 !important; }
+body[data-page="desktop"] #pageHandover .hold-box-badge { background: #dcfce7 !important; color: #166534 !important; }
+body[data-page="mobile"] #pageHandover .hold-box-badge { background: #ede9fe !important; color: #5b21b6 !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .message.green { color: green !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #pageHandover .message.red { color: red !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #handoverModal .info-card { background: #ecfdf5 !important; border: 2px solid #10b981 !important; color: #064e3b !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #handoverModal .orders-card { background: #f0f9ff !important; border: 2px solid #0ea5e9 !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #handoverModal .progress-fill { background: #10b981 !important; }
+body:is([data-page="desktop"], [data-page="mobile"]) #handoverModal .progress-count { color: #059669 !important; }

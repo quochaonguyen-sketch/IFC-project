@@ -1,0 +1,50 @@
+#browser-help,
+.ifc-browser-help {
+  display: none !important;
+}
+
+html body[data-page="rider"] #title { font-size: 24px !important; }
+html body[data-page="rider"] .rider-entry-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: stretch; }
+html body[data-page="rider"] .rider-entry-row input { min-width: 0; width: 100%; margin: 0; }
+html body[data-page="rider"] .rider-entry-row button { width: auto; margin: 0; padding: 12px; white-space: nowrap; }
+html body[data-page="rider"] #finish-rider { width: 100%; margin-top: 12px; min-height: 48px; }
+html body[data-page="rider"] #confirm-dialog { width: min(520px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); padding: 24px; overflow-y: auto; }
+html body[data-page="rider"] #confirm-dialog h2 { margin: 0 0 12px; font-size: 22px; }
+html body[data-page="rider"] #confirm-orders { max-height: 38dvh; overflow-y: auto; padding-left: 24px; overflow-wrap: anywhere; }
+html body[data-page="rider"] #confirm-orders li { padding: 8px 0; font-weight: 700; }
+html body[data-page="rider"] #confirm-message { color: var(--ui-danger); }
+html body[data-page="rider"] #confirm-message:empty { display: none; }
+html body[data-page="rider"] .confirm-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+html body[data-page="rider"] .confirm-actions button { min-height: 48px; margin: 0; }
+html body[data-page="rider"] #confirm-dialog [hidden] { display: none !important; }
+html body[data-page="rider"] .confirm-actions:has([hidden]) { grid-template-columns: 1fr; }
+html body[data-page="rider"] #hint:empty,
+html body[data-page="rider"] #voice-note:empty { display: none; }
+
+html body[data-page="rider"] #support-dialog {
+  width: min(1080px, calc(100vw - 32px));
+  max-height: 96dvh;
+  height: 96dvh;
+  padding: 0;
+  overflow: hidden;
+}
+html body[data-page="rider"] #support-dialog[open] { display: flex; flex-direction: column; }
+html body[data-page="rider"] #support-dialog .dialog-head { flex: none; align-items: center; padding: 12px; }
+html body[data-page="rider"] #support-dialog .footnote { flex: none; margin: 0; padding: 0 12px 8px; font-size: 12px; text-align: left; }
+html body[data-page="rider"] #support-dialog #support-frame { display: block; flex: 1; min-height: 0; height: auto; width: 100%; border: 0; border-radius: 0; }
+html body[data-page="rider"] #support-dialog #close-support { min-height: 44px; flex: none; }
+
+@media (max-width: 640px) {
+  html body[data-page="rider"] #support-dialog {
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  html body[data-page="rider"] #support-dialog .dialog-head { padding-top: max(12px, env(safe-area-inset-top)); }
+}
+

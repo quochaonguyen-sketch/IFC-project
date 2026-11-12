@@ -1,0 +1,125 @@
+#browser-help,.ifc-browser-help{display:none!important}.ifc-browser-open{display:inline-block;background:#086852;color:white;padding:12px;border-radius:8px;text-decoration:none}.ifc-browser-help summary{cursor:pointer;font-weight:700}[hidden]{display:none!important}
+
+.ifc-assisted-receipt {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border: 1px solid #a7d9c3;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #07543a;
+  text-align: center;
+}
+.ifc-assisted-receipt strong { font-size: 32px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+html body[data-page="rider-call"] main.ifc-driver-call {
+  width: 100%;
+  max-width: 1040px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(12px, env(safe-area-inset-top)) 12px calc(88px + env(safe-area-inset-bottom));
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--ui-bg);
+}
+html body[data-page="rider-call"] .ifc-driver-call .ui-brand-mark { width: 32px; height: 32px; border-radius: 8px; }
+html body[data-page="rider-call"] .ifc-driver-call .ui-brand-copy strong { font-size: 15px; }
+html body[data-page="rider-call"] .ifc-driver-call h1 { margin: 10px 0 6px; font-size: 22px !important; }
+html body[data-page="rider-call"] .ifc-driver-call #state {
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ui-muted);
+  font-size: 13px;
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-guest-call[data-agent="false"] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-guest-call > [role="status"] { margin: 0; padding: 7px 10px; line-height: 1.45; }
+html body[data-page="rider-call"] .ifc-driver-call .ifc-guest-call > button { width: 100%; margin: 0; min-height: 48px; }
+
+/* The receptionist fills the stage; the driver's preview stays in the corner. */
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras {
+  order: -1;
+  display: block;
+  position: relative;
+  height: clamp(320px, 62dvh, 720px);
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--ui-navy);
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras figure:first-child { width: 100%; height: 100%; }
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center 40%;
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras figcaption {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  background: #172b43d9;
+  font-size: 13px;
+  font-weight: 600;
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras figure:last-child {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: clamp(80px, 24vw, 112px);
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px #0005;
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras figure:last-child figcaption {
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 3px 6px;
+  border-radius: 0;
+  font-size: 12px;
+}
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-instructions { margin: 10px 0; color: var(--ui-muted); font-size: 14px; }
+html body[data-page="rider-call"] .ifc-driver-call .ifc-call-instructions summary { min-height: 44px; padding: 10px 0; cursor: pointer; }
+html body[data-page="rider-call"] .ifc-driver-call #end {
+  position: fixed;
+  z-index: 30;
+  right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 12px;
+  width: calc(100% - 24px);
+  max-width: 1016px;
+  min-height: 54px;
+  margin: 0 auto;
+  color: white !important;
+  background: var(--ui-danger) !important;
+  font-size: 16px !important;
+}
+html body[data-page="rider-call"] .ifc-driver-call #end:hover:not(:disabled) { background: #8f1d15 !important; }
+
+@media (orientation: landscape) and (max-height: 540px) {
+  html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras { height: 72dvh; }
+  html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras video { object-fit: contain; }
+  html body[data-page="rider-call"] .ifc-driver-call .ifc-call-cameras figure:last-child { width: 80px; aspect-ratio: 4/3; }
+}

@@ -1,0 +1,12 @@
+import {spawn} from 'node:child_process';
+import {existsSync} from 'node:fs';
+const args=process.argv.slice(2).filter(arg=>arg!=='--strictPort');
+const run=(file,args)=>new Promise((resolve,reject)=>{const child=spawn(process.execPath,[file,...args],{stdio:'inherit'});child.on('error',reject);child.on('exit',code=>code===0?resolve():reject(Error(file+' exited '+code)));});
+await run('node_modules/next/dist/bin/next',['build']);
+await run('scripts/postbuild.mjs',[]);
+if(!existsSync('.wrangler/state/v3/d1'))await run('node_modules/wrangler/bin/wrangler.js',['d1','execute','DB','--local','--file','schema.sql']);
+const hasPort=args.some(arg=>arg==='--port'||arg.startsWith('--port='));
+const child=spawn(process.execPath,['node_modules/wrangler/bin/wrangler.js','dev','--ip','127.0.0.1',...(!hasPort?['--port',process.env.PORT||'8787']:[]),...args],{stdio:'inherit'});
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>child.kill(signal));
+child.on('error',error=>{console.error(error);process.exitCode=1;});
+child.on('exit',code=>process.exit(code??1));

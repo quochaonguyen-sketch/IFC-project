@@ -1,0 +1,452 @@
+/* Shared visual system. Legacy styles continue to control operational visibility. */
+:root {
+  color-scheme:light;
+  --ui-font:'Segoe UI',Inter,Arial,sans-serif;
+  --vnwl-ui-font:var(--ui-font); --vnwl-code-font:Consolas,'Courier New',monospace;
+  --ui-bg:#f5f6f8; --ui-surface:#fff; --ui-ink:#172b43; --ui-muted:#596778;
+  --ui-border:#dce2e9; --ui-subtle:#f1f4f7; --ui-navy:#172b43; --ui-accent:#c7441c;
+  --ui-accent-hover:#a93614; --ui-accent-soft:#fff2eb; --ui-success:#14734e;
+  --ui-success-soft:#edf8f1; --ui-danger:#b42318; --ui-danger-soft:#fff1f0;
+  --ui-radius:12px; --ui-shadow:0 4px 20px #172b4308;
+}
+html {scroll-padding:24px; background:var(--ui-bg)}
+html body[data-page] {margin:0;padding:0;background:var(--ui-bg)!important;color:var(--ui-ink)!important;font:15px/1.6 var(--ui-font)!important;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+html body[data-page] *,html body[data-page] *::before,html body[data-page] *::after {box-sizing:border-box}
+html body[data-page] :is(button,input,select,textarea,table,th,td,.card,.nav-link,#pageRiderOverview *) {font-family:var(--ui-font)!important}
+html body[data-page] h1 {color:var(--ui-ink)!important;font-size:clamp(25px,2.3vw,32px)!important;line-height:1.25!important;font-weight:700!important;letter-spacing:-.7px;margin:0 0 12px;text-wrap:balance}
+html body[data-page] h2 {font-size:19px;line-height:1.35;font-weight:650;letter-spacing:-.3px;color:var(--ui-ink);margin:0 0 16px}
+html body[data-page] h3 {font-size:16px;font-weight:650;color:var(--ui-ink)}
+html body[data-page] :is(p,.hint,.muted,.sub,.input-help,.help-text,.footnote) {line-height:1.65}
+html body[data-page] :is(.muted,.hint,.sub,.input-help,.help-text,.footnote,.ticket-label) {color:var(--ui-muted);font-size:14px;font-weight:400}
+html body[data-page] a {color:var(--ui-accent);text-underline-offset:4px}
+html body[data-page] :is(button,input,select,textarea,a,summary):focus-visible {outline:3px solid #226bca!important;outline-offset:3px!important;box-shadow:0 0 0 5px #226bca18!important}
+html body[data-page] :is(input,select,textarea) {min-width:0;max-width:100%;font-size:16px!important;line-height:1.4;color:var(--ui-ink);background:var(--ui-surface);border:1px solid #b7c2ce!important;border-radius:8px!important;box-shadow:none!important;padding:11px 13px!important;min-height:46px}
+html body[data-page] :is(input,select,textarea):focus {border-color:#226bca!important;outline:0}
+html body[data-page] input::placeholder,html body[data-page] textarea::placeholder {color:#6c7888;opacity:1;font-weight:400}
+html body[data-page] label,html body[data-page] legend {font-size:13px;font-weight:600;color:var(--ui-ink)}
+html body[data-page] input[type=checkbox] {width:18px!important;height:18px!important;min-height:18px;accent-color:var(--ui-accent);padding:0!important;flex:none}
+html body[data-page] button {min-height:44px;border:1px solid transparent!important;border-radius:8px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;padding:11px 16px!important;background:var(--ui-accent)!important;color:white!important;box-shadow:none!important;cursor:pointer;touch-action:manipulation;transition:background-color .16s ease,border-color .16s ease;white-space:normal}
+html body[data-page] button:hover:not(:disabled) {background:var(--ui-accent-hover)!important;transform:none!important;filter:none!important;box-shadow:none!important}
+html body[data-page] button:active:not(:disabled) {background:#8f2d10!important}
+html body[data-page] button:disabled {opacity:.5;cursor:not-allowed;transform:none!important}
+html body[data-page] button:is(.secondary,.alt,.small,.btn-dark,.btn-gray,.btn-purple,.btn-camera,.btn-camera-light,.gray,#google,#btnRefresh,#btnAdvancedSearch,#btnOpenLocationTools,#repeat,#btnRiderCallVoiceToggle,#btnToggleHoldSortOrder,#close-support) {background:var(--ui-surface)!important;color:var(--ui-ink)!important;border-color:var(--ui-border)!important}
+html body[data-page] button:is(.secondary,.alt,.small,.btn-dark,.btn-gray,.btn-purple,.btn-camera,.btn-camera-light,.gray,#google,#btnRefresh,#btnAdvancedSearch,#btnOpenLocationTools,#repeat,#btnRiderCallVoiceToggle):hover:not(:disabled) {background:var(--ui-subtle)!important;border-color:#b7c2ce!important}
+html body[data-page] button:is(.danger,.btn-red,#end,#btnResetAllCurrentData) {background:var(--ui-danger-soft)!important;color:var(--ui-danger)!important;border-color:#efc8c5!important}
+html body[data-page] button:is(.danger,.btn-red,#end,#btnResetAllCurrentData):hover:not(:disabled) {background:#ffe2df!important}
+html body[data-page] :is(.panel,.card,.modal-box,.modal-content,.ticket,.hold-ticket-card) {background:var(--ui-surface)!important;border:1px solid var(--ui-border)!important;border-radius:var(--ui-radius)!important;box-shadow:var(--ui-shadow)!important}
+html body[data-page] :is(.panel,.card) {padding:22px!important}
+html body[data-page] :is(.message,#msg,#message,[data-msg]):empty {display:none}
+html body[data-page] :is(.message,#msg,#message,[data-msg]):not(:empty) {border-radius:8px;padding:12px 14px;line-height:1.55}
+.ui-icon {display:inline-block;width:19px;height:19px;flex:none;vertical-align:middle}
+.ui-brand {display:flex;align-items:center;gap:11px;min-width:0;color:var(--ui-ink);text-align:left}
+.ui-brand-mark {display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:11px;background:var(--ui-accent);color:#fff}
+.ui-brand-mark .ui-icon {width:25px;height:25px}
+.ui-brand-copy {display:grid;gap:1px;min-width:0}
+.ui-brand-copy strong {font-size:18px;line-height:1.4;letter-spacing:-.3px;font-weight:700}
+.ui-brand-copy>span {font-size:12px;line-height:1.4;color:var(--ui-muted);font-weight:400}
+html body[data-page]>header {min-height:80px;margin:0;padding:16px max(24px,calc((100vw - 1200px)/2))!important;display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--ui-surface)!important;color:var(--ui-ink)!important;border-bottom:1px solid var(--ui-border)}
+.ui-topbar-label {font-size:12px;color:var(--ui-muted);font-weight:500;padding:6px 10px;background:var(--ui-subtle);border:1px solid var(--ui-border);border-radius:6px}
+html body[data-page] .ui-topbar-links {display:flex;flex-wrap:wrap;gap:18px;font-size:14px}
+.ui-topbar-links a {font-weight:600;text-decoration:none}
+html body[data-page] .ui-page-intro {margin:0 0 24px;color:var(--ui-muted);max-width:78ch;font-size:15px}
+html body[data-page] .ui-kicker {margin:0 0 8px;color:var(--ui-accent);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+html body[data-page] .ui-field {display:grid;gap:7px;margin:0;min-width:0;color:var(--ui-muted);font-size:12px;font-weight:600}
+html body[data-page] .ui-field input,html body[data-page] .ui-field select {margin:0!important;width:100%}
+html body[data-page] .ui-button-content {display:inline-flex;align-items:center;justify-content:center;gap:8px}
+
+/* Operations workspace */
+html body[data-page=desktop] .app {display:flex;align-items:stretch;min-height:100dvh}
+html body[data-page=desktop] .app>aside {width:252px!important;flex:0 0 252px;min-width:0;padding:24px 18px!important;background:var(--ui-navy)!important;position:fixed!important;top:0!important;left:0!important;bottom:0!important;height:100vh!important;height:100dvh!important;overflow-y:auto!important;z-index:100!important;scrollbar-width:thin;scrollbar-color:#536276 transparent;color:#fff}
+html body[data-page=desktop] aside .brand {margin:0 0 30px}
+html body[data-page=desktop] aside .ui-brand {color:#fff}
+html body[data-page=desktop] aside .ui-brand-copy strong {font-size:18px}
+html body[data-page=desktop] aside .ui-brand-copy>span {color:#b6c5d6;font-size:11px}
+html body[data-page=desktop] aside label {color:#b6c5d6;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin:0 0 8px}
+html body[data-page=desktop] aside #warehouseSelect {background:#233b55!important;color:#fff!important;border-color:#45617c!important;font-size:14px!important}
+html body[data-page=desktop] aside .version-box {border:0!important;background:transparent!important;color:#b6c5d6;box-shadow:none;text-align:left;font-size:11px;font-weight:400!important;margin:10px 0 22px;padding:0}
+html body[data-page=desktop] aside .auth-user-box {background:transparent!important;border:0!important;color:#d2dce8!important;padding:0!important;font-size:12px!important;font-weight:400!important;line-height:1.6!important}
+html body[data-page=desktop] aside .auth-logout-button {min-height:36px!important;margin:12px 0 0;font-size:12px!important;background:#233b55!important;border-color:#45617c!important;color:#fff!important;padding:8px 12px!important}
+html body[data-page=desktop] aside .nav-menu {display:grid;gap:6px;margin:24px -6px}
+html body[data-page=desktop] aside .nav-link {display:flex;align-items:center;gap:10px;width:100%;border:0!important;min-height:46px;padding:12px!important;background:transparent!important;color:#cbd7e5!important;text-align:left;text-decoration:none;font-size:13px!important;line-height:1.5!important;font-weight:500!important;border-radius:8px!important}
+html body[data-page=desktop] aside .nav-link.active {background:#fff!important;color:var(--ui-navy)!important;font-weight:650!important}
+html body[data-page=desktop] aside .nav-link:hover:not(.active) {background:#2a415d!important;color:#fff!important}
+html body[data-page=desktop] aside :is(.refresh-indicator,.source-health-box,.contact-box) {background:transparent!important;border:0!important;border-top:1px solid #3c5068!important;border-radius:0!important;padding:17px 0 0;margin:18px 0 0;color:#b6c5d6;font-size:12px;font-weight:400!important;box-shadow:none}
+html body[data-page=desktop] aside :is(.refresh-indicator,.source-health-box,.contact-box) :is(div,span,b) {font-size:11px!important;font-weight:400!important}
+html body[data-page=desktop] aside .source-health-title {font-size:12px;font-weight:600;color:#d2dce8}
+html body[data-page=desktop] aside .source-chip {font-size:12px;border-radius:6px;font-weight:500;padding:7px 9px}
+html body[data-page=desktop] aside #dailyFullResetPanel {background:#233b55!important;border:0!important;font-size:11px!important;padding:10px!important;box-shadow:none}
+html body[data-page=desktop] aside .contact-box a {font-size:11px;color:#cbd7e5;font-weight:400}
+html body[data-page=desktop] aside :is(#ifc-admin-link,#ifc-desk-link) {display:block;margin-top:10px;padding:10px!important;border:1px solid #45617c!important;background:#233b55!important;border-radius:8px;color:#fff!important;font-size:12px!important;text-decoration:none}
+html body[data-page=desktop] .app>main {flex:1;min-width:0;margin-left:252px!important;width:calc(100% - 252px)!important;padding:28px 32px 48px!important;background:var(--ui-bg)!important;margin-top:0;margin-bottom:0;border:0;border-radius:0;max-width:none}
+html body[data-page] .ui-workspace-bar {display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--ui-border);padding:0 0 18px;margin-bottom:26px;color:var(--ui-muted);font-size:12px}
+.ui-workspace-bar .ui-workspace-tag {display:inline-flex;align-items:center;gap:6px;background:var(--ui-accent-soft);color:var(--ui-accent);border-radius:5px;padding:5px 8px;font-weight:600;font-size:11px}
+/* Status KPI cards */
+html body[data-page] .cards {display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;margin:20px 0!important}
+html body[data-page] .main-status-cards .card {position:relative;padding:14px 18px!important;border-top:3px solid #d1d9e3!important;background:#fff!important;color:var(--ui-ink)!important;border-radius:10px!important;min-width:0;text-align:left!important;box-shadow:0 1px 3px rgba(15,23,42,.03)!important;transition:box-shadow .15s ease,transform .15s ease}
+html body[data-page] .main-status-cards .card:hover {box-shadow:0 6px 18px rgba(15,23,42,.06)!important;transform:translateY(-1px)}
+html body[data-page] .main-status-cards .card:nth-child(1) {border-top-color:var(--ui-accent)!important}
+html body[data-page] .main-status-cards .card:nth-child(2) {border-top-color:#64748b!important}
+html body[data-page] .main-status-cards .card:nth-child(3) {border-top-color:#2563eb!important}
+html body[data-page] .main-status-cards .card:nth-child(4) {border-top-color:var(--ui-success)!important}
+html body[data-page] .main-status-cards .card .label {color:var(--ui-muted)!important;font-size:11px!important;font-weight:700!important;letter-spacing:.6px;line-height:1.4!important;text-transform:uppercase}
+html body[data-page] .main-status-cards .card .number {color:var(--ui-ink)!important;font-size:28px!important;line-height:1.2!important;font-weight:700!important;margin-top:6px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+
+/* Clean operational panel */
+html body[data-page] .panel {margin:16px 0!important;padding:18px 20px!important;border-radius:12px!important;background:#fff!important;border:1px solid var(--ui-border)!important;box-shadow:0 2px 8px rgba(15,23,42,.04)!important;overflow:visible}
+
+/* Toolbar layout: 2-tier robust responsive layout */
+html body[data-page] .toolbar {display:flex!important;flex-direction:column!important;gap:12px!important;padding:0 0 14px!important;margin:0 0 14px!important;border-bottom:1px solid #edf2f7!important}
+html body[data-page] .ui-toolbar-filters {display:flex!important;align-items:flex-end!important;flex-wrap:wrap!important;gap:10px!important;width:100%!important}
+html body[data-page] .ui-toolbar-filters .ui-field-search {flex:1 1 260px!important}
+html body[data-page] .ui-toolbar-filters .ui-field-status {flex:0 1 170px!important;min-width:150px}
+html body[data-page] .ui-toolbar-filters .ui-field-limit {flex:0 1 120px!important;min-width:100px}
+html body[data-page] .ui-toolbar-filters .btn-search-primary {flex:0 0 auto!important;min-height:44px!important;padding:10px 18px!important;background:var(--ui-accent)!important;color:#fff!important;font-weight:700!important;box-shadow:0 2px 6px rgba(199,68,28,.25)!important}
+html body[data-page] .ui-toolbar-actions {display:flex!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:wrap!important;gap:8px!important;width:100%!important}
+html body[data-page] .ui-toolbar-actions button {min-height:38px!important;padding:8px 13px!important;font-size:13px!important;border-radius:8px!important;background:#fff!important;border:1px solid var(--ui-border)!important;color:var(--ui-ink)!important;box-shadow:0 1px 2px rgba(0,0,0,.03)!important}
+html body[data-page] .ui-toolbar-actions button:hover:not(:disabled) {background:#f8fafc!important;border-color:#cbd5e1!important}
+
+/* Quick Order Creation Zone */
+html body[data-page] .create-zone {margin-top:0!important;padding:16px 18px!important;border:1px solid #e2e8f0!important;border-radius:10px!important;background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%)!important;box-shadow:none!important;overflow:visible}
+html body[data-page] .ui-create-zone-header {display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:wrap!important;gap:10px!important;margin-bottom:12px!important}
+html body[data-page] .ui-create-zone-title-wrap {display:flex!important;align-items:center!important;gap:8px!important}
+html body[data-page] .create-zone-title {font-size:15px!important;font-weight:700!important;color:var(--ui-ink)!important;margin:0!important;letter-spacing:-.2px;background:transparent!important;padding:0!important;display:inline-block!important;border-radius:0!important}
+html body[data-page] .ui-scanner-pill {display:inline-flex!important;align-items:center!important;gap:4px!important;padding:3px 8px!important;border-radius:999px!important;background:#ecfdf5!important;color:#047857!important;border:1px solid #a7f3d0!important;font-size:11px!important;font-weight:700!important}
+html body[data-page] .scan-guide-normal {display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important;font-size:11.5px!important;color:var(--ui-muted)!important;margin:0!important;line-height:1.4!important;background:transparent!important;padding:0!important;border:0!important}
+html body[data-page] .ui-guide-flow {font-weight:600!important;color:#047857!important;background:#f0fdf4!important;padding:3px 8px!important;border-radius:6px!important;border:1px solid #bbf7d0!important}
+html body[data-page] .ui-guide-tip {color:#64748b!important;font-size:11px!important}
+html body[data-page] .form-grid {display:grid!important;grid-template-columns:minmax(170px,1.2fr) minmax(170px,1.2fr) minmax(130px,.9fr) minmax(85px,.5fr) auto!important;gap:10px!important;align-items:end!important}
+html body[data-page] .form-grid input {height:44px!important;font-size:14px!important;min-height:44px!important;border-radius:8px!important}
+html body[data-page] .form-grid .ui-btn-create-order {min-height:44px!important;font-size:14px!important;padding:10px 18px!important;background:#16a34a!important;color:#fff!important;border:1px solid #15803d!important;border-radius:8px!important;font-weight:700!important;box-shadow:0 2px 6px rgba(22,163,74,.25)!important;white-space:nowrap!important}
+html body[data-page] .form-grid .ui-btn-create-order:hover:not(:disabled) {background:#15803d!important;box-shadow:0 4px 10px rgba(22,163,74,.35)!important}
+html body[data-page] :is(.sub-suggestion-hint,.sub-suggestion-text) {font-size:12px!important;line-height:1.4!important;font-weight:600!important;color:#1d4ed8!important;background:#eff6ff!important;border:1px solid #bfdbfe!important;border-radius:7px!important;padding:7px 12px!important;margin-top:10px!important;display:inline-flex!important;align-items:center!important;gap:6px!important}
+
+/* Panel bottom footer: Message + Hint + Reset */
+html body[data-page] .ui-panel-footer-bar {display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:wrap!important;gap:10px!important;margin-top:12px!important;padding-top:10px!important;border-top:1px solid #f1f5f9!important}
+html body[data-page] .ui-panel-footer-left {display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important;flex:1 1 400px!important}
+html body[data-page] .ui-panel-footer-left .message:not(:empty) {display:inline-flex!important;align-items:center!important;gap:6px!important;padding:4px 9px!important;border-radius:6px!important;font-size:12px!important;font-weight:700!important;background:#ecfdf5!important;color:#065f46!important;border:1px solid #a7f3d0!important;margin:0!important}
+html body[data-page] .ui-system-hint {display:flex!important;align-items:center!important;gap:6px!important;color:#64748b!important;font-size:12px!important;line-height:1.4!important;margin:0!important}
+html body[data-page] .ui-hint-icon {display:inline-flex!important;align-items:center!important;justify-content:center!important;width:15px!important;height:15px!important;border-radius:50%!important;background:#e2e8f0!important;color:#475569!important;font-size:10px!important;font-weight:800!important;flex:none!important}
+html body[data-page] .ui-panel-footer-right .ui-btn-system-reset {font-size:11px!important;min-height:30px!important;padding:5px 10px!important;background:#fff1f2!important;border:1px solid #fecdd3!important;color:#e11d48!important;border-radius:6px!important;box-shadow:none!important;font-weight:600!important;transition:all .14s ease!important}
+html body[data-page] .ui-panel-footer-right .ui-btn-system-reset:hover:not(:disabled) {background:#ffe4e6!important;border-color:#fda4af!important;color:#be123c!important}
+html body[data-page] #btnResetAllCurrentData {font-size:11px!important;min-height:30px;padding:5px 10px!important}
+html body[data-page] :is(.responsive-table,.table-wrap) {max-width:100%;overflow:auto;border:1px solid var(--ui-border);border-radius:10px;background:#fff;margin-top:14px;scrollbar-width:thin}
+html body[data-page] table {background:#fff;width:100%;border-collapse:collapse!important;margin:0;box-shadow:none!important;border:0;border-radius:0;table-layout:auto}
+html body[data-page] th {background:#f2f5f8!important;color:#4b5d71!important;font-size:11px!important;font-weight:650!important;text-align:left;letter-spacing:.2px;padding:13px 14px!important;white-space:nowrap;border:0!important;border-bottom:1px solid var(--ui-border)!important}
+html body[data-page] td {border:0!important;border-bottom:1px solid #edf0f4!important;padding:13px 14px!important;font-size:13px!important;line-height:1.5;color:var(--ui-ink);font-variant-numeric:tabular-nums;vertical-align:middle}
+html body[data-page] tbody tr:last-child td {border-bottom:0!important}
+html body[data-page] tbody tr:hover:not([class*='rider-row-']) {background:#fafbfc}
+html body[data-page] td[colspan] {padding:32px 20px!important;text-align:center;color:var(--ui-muted);font-size:14px!important}
+html body[data-page] td button {font-size:12px!important;min-height:36px;padding:8px 10px!important}
+html body[data-page] :is(.badge,.rider-status-badge,.pill) {font-size:11px!important;line-height:1.5;font-weight:600!important;border-radius:6px!important;padding:5px 8px!important;letter-spacing:0}
+html body[data-page] .hold-ticket-card {border-left:3px solid #7591b3!important;padding:18px!important;border-radius:10px!important;gap:12px!important}
+html body[data-page] .hold-ticket-card:nth-child(even) {background:#fff!important;border-left-color:var(--ui-accent)!important}
+html body[data-page] .hold-ticket-head {font-size:14px;font-weight:650!important;border-bottom:1px solid var(--ui-border);padding-bottom:12px}
+html body[data-page] .hold-ticket-actions button {font-size:13px!important;min-width:0!important}
+html body[data-page] .rider-row-pick {background:#fff1f0!important;color:var(--ui-danger)!important}
+html body[data-page] :is(.rider-row-handed,.rider-row-done) {background:var(--ui-success-soft)!important;color:var(--ui-success)!important}
+html body[data-page] :is(.modal,.camera-modal,.ocr-modal) {background:#14284299}
+html body[data-page] :is(.modal-header,.modal-footer) {border-color:var(--ui-border);padding:18px 22px;background:#fff!important}
+html body[data-page] :is(.modal-box,.modal-content) {max-height:92dvh;overflow:auto}
+html body[data-page] .location-tools-modal-box {background:#fff;border:1px solid var(--ui-border);border-radius:14px}
+html body[data-page] :is(.auth-login-box,.auth-login-screen) {font-family:var(--ui-font)!important}
+
+/* Handover Modal UI Layout & Polishing */
+#handoverModal .modal-box {
+  width: min(880px, 94vw) !important;
+  max-height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  padding: 24px !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid var(--ui-border) !important;
+  box-shadow: 0 20px 48px -8px rgba(15, 23, 42, 0.28) !important;
+  overflow-y: auto !important;
+}
+#handoverModal .modal-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--ui-ink) !important;
+  padding: 0 0 14px 0 !important;
+  border-bottom: 1px solid var(--ui-border) !important;
+}
+#handoverModal .ticket-top {
+  display: grid !important;
+  grid-template-columns: 1fr 1.25fr !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+  min-height: auto !important;
+}
+#handoverModal .info-card {
+  background: var(--ui-success-soft) !important;
+  border: 1px solid #a7f3d0 !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  color: #065f46 !important;
+}
+#handoverModal .orders-card {
+  background: #f0f9ff !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+#handoverModal .ticket-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+}
+#handoverModal .info-row {
+  margin: 6px 0 !important;
+  font-size: 13px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+#handoverModal .info-value {
+  font-weight: 700 !important;
+  color: #0284c7 !important;
+  margin-top: 0 !important;
+}
+#handoverModal .ticket-list {
+  max-height: 180px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding-right: 4px !important;
+}
+#handoverModal .ticket-item {
+  background: #ffffff !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+}
+#handoverModal .progress-card {
+  background: var(--ui-subtle) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 12px !important;
+  padding: 14px 18px !important;
+  margin: 0 !important;
+}
+#handoverModal .progress-bar {
+  height: 10px !important;
+  border-radius: 999px !important;
+  background: #e2e8f0 !important;
+  overflow: hidden !important;
+  margin: 8px 0 !important;
+}
+#handoverModal .progress-fill {
+  background: linear-gradient(90deg, #10b981, #059669) !important;
+  height: 100% !important;
+  border-radius: 999px !important;
+  transition: width 0.3s ease !important;
+}
+#handoverModal .progress-count {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #059669 !important;
+  text-align: right !important;
+  margin-top: 0 !important;
+}
+#handoverModal .scan-box {
+  display: grid !important;
+  grid-template-columns: 1fr auto auto auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+#handoverModal .scan-input {
+  height: 44px !important;
+  font-size: 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--ui-border) !important;
+  padding: 0 14px !important;
+}
+#handoverModal .modal-footer {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  padding: 16px 0 0 0 !important;
+  border-top: 1px solid var(--ui-border) !important;
+  background: transparent !important;
+}
+
+/* Mobile staff, administration and tools */
+html body[data-page=mobile] .app>aside {background:var(--ui-navy)!important;color:#fff;padding:20px!important}
+html body[data-page=mobile] .app>aside .ui-brand,html body[data-page=mobile] .app>aside .ui-brand-copy>span {color:#fff}
+html body[data-page=mobile] .app>main {padding:24px!important;background:var(--ui-bg)!important}
+html body[data-page=mobile] :is(.panel,.hold-ticket-card) {padding:18px!important}
+html body[data-page=mobile] .nav-link {color:#fff!important;font-size:14px!important}
+html body[data-page=admin]>main,html body[data-page=support]>main {max-width:1200px;width:calc(100% - 48px);margin:36px auto 60px;padding:0;background:transparent;box-shadow:none;border:0;border-radius:0}
+html body[data-page=admin] .card {margin:18px 0;padding:24px!important}
+html body[data-page=admin] .grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+html body[data-page=admin] .sub {max-width:95ch;margin:0 0 16px}
+html body[data-page=admin] #account {background:var(--ui-accent-soft);border:1px solid #ecd7ca;border-radius:7px;padding:10px 14px;font-size:12px;color:#874126;display:inline-block;margin:0 0 6px}
+html body[data-page=admin] fieldset {border:1px solid var(--ui-border);border-radius:8px;padding:12px 16px;margin:10px 0 0;min-width:0}
+html body[data-page=admin] .wh-check {display:flex;align-items:center;gap:10px;background:var(--ui-subtle);border:1px solid var(--ui-border);border-radius:7px;padding:12px;font-size:13px;font-weight:500;margin:8px 0;min-height:44px}
+html body[data-page=admin] #grantWarehouses {grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+html body[data-page=admin] :is(#users,#warehouses) {padding:0;list-style:none;margin:20px 0 0;display:grid;gap:0}
+html body[data-page=admin] :is(#users,#warehouses)>li {display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:13px 0;border-bottom:1px solid var(--ui-border);font-size:13px}
+html body[data-page=admin] .pill {background:var(--ui-subtle);color:#4b5d71;border:1px solid var(--ui-border);margin-left:6px}
+html body[data-page=admin] .links {display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:16px 0}
+html body[data-page=location-tools] .wrap {max-width:1120px;width:calc(100% - 40px);margin:28px auto}
+html body[data-page=location-tools] .card {margin-bottom:20px}
+html body[data-page=location-tools] .session {background:var(--ui-subtle);border:1px solid var(--ui-border);color:var(--ui-muted)}
+
+/* Sign in */
+html body[data-page=login] {min-height:100dvh}
+html body[data-page=login]>main {max-width:440px;width:calc(100% - 40px);margin:64px auto 48px;padding:36px!important;background:#fff;border:1px solid var(--ui-border);border-radius:14px;box-shadow:0 12px 40px #172b4308}
+html body[data-page=login] h1 {font-size:28px!important;margin-bottom:12px}
+html body[data-page=login] .ui-login-description {color:var(--ui-muted);font-size:14px;margin:0 0 24px}
+html body[data-page=login] button {width:100%;margin:14px 0 0;min-height:48px}
+html body[data-page=login] #google {display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600}
+html body[data-page=login] .ui-google-mark {font-size:18px;font-weight:700;color:#3869bb}
+.ui-login-divider {display:flex;align-items:center;gap:12px;margin:24px 0 4px;font-size:11px;color:var(--ui-muted)}
+.ui-login-divider::before,.ui-login-divider::after {content:'';height:1px;background:var(--ui-border);flex:1}
+html body[data-page=login] label {display:grid;gap:7px;margin-top:17px}
+html body[data-page=login] #msg:not(:empty) {background:var(--ui-accent-soft);color:#874126;margin-top:18px;font-size:13px}
+.ui-login-note {font-size:12px;text-align:center;color:var(--ui-muted);margin:22px 0 0}
+
+/* Rider, counter and guest support use the same quiet surfaces and larger targets. */
+html body[data-page=rider]>header {padding:16px max(18px,calc((100vw - 620px)/2))!important;background:#fff!important;min-height:76px;border-bottom:1px solid var(--ui-border)}
+html body[data-page=rider] #station {color:var(--ui-muted)!important;font-size:13px!important;font-weight:500!important;margin-top:2px}
+html body[data-page=rider] .live {background:var(--ui-success-soft);color:var(--ui-success);border:1px solid #cce8d8;font-size:10px;font-weight:700;letter-spacing:.5px;border-radius:6px;padding:4px 8px}
+html body[data-page=rider]>main {max-width:620px;width:calc(100% - 32px);margin:20px auto 32px;padding:0;background:transparent;border:0;box-shadow:none}
+html body[data-page=rider] .topline {display:flex;justify-content:space-between;align-items:center;gap:10px;margin:16px 0 14px}
+html body[data-page=rider] #step,html body[data-page=kiosk] #step {font-size:11.5px;font-weight:700;letter-spacing:1px;color:var(--ui-muted)}
+html body[data-page=rider] .topline button {font-size:12px!important;min-height:38px;padding:7px 12px!important;border-radius:8px!important;white-space:nowrap!important;flex:none!important}
+html body[data-page=rider] .card {padding:26px 22px!important;border-radius:18px!important;box-shadow:0 4px 20px rgba(15,23,42,.05)!important;animation:none!important}
+html body[data-page=rider] h1 {font-size:26px!important;line-height:1.25!important;letter-spacing:-.5px;margin:0 0 10px;color:var(--ui-ink)}
+html body[data-page=rider] #hint {font-size:14px;color:var(--ui-muted);margin:0 0 20px;line-height:1.5}
+html body[data-page=rider] .input-label {font-size:13px;font-weight:600;color:var(--ui-ink);margin:0 0 8px}
+html body[data-page=rider] #rider-input {width:100%;min-height:58px!important;font-size:24px!important;letter-spacing:2px;font-weight:600;box-shadow:none;border-color:#b7c2ce!important;border-radius:9px!important}
+html body[data-page=rider] :is(.primary,.secondary) {width:100%;min-height:52px;margin:10px 0 0!important;font-size:16px!important;letter-spacing:0}
+html body[data-page=rider] .input-help {font-size:12px;margin:8px 0 12px}
+html body[data-page=rider] .order-list {list-style:none;margin:20px 0;padding:0;border-top:1px solid var(--ui-border)}
+html body[data-page=rider] .order-list li {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--ui-border);border-radius:0;box-shadow:none;background:transparent}
+html body[data-page=rider] .order-list strong {font-size:18px;letter-spacing:1px;color:var(--ui-ink)}
+html body[data-page=rider] .order-list small {font-size:12px;color:var(--ui-muted);font-weight:400}
+html body[data-page=rider] .remove {width:auto;min-height:38px;background:var(--ui-subtle)!important;color:var(--ui-ink)!important;border-color:var(--ui-border)!important;font-size:12px!important}
+html body[data-page=rider] .number {font-size:clamp(68px,14vw,90px);font-weight:700;letter-spacing:-3px;color:var(--ui-accent);line-height:1.2;text-align:center;font-variant-numeric:tabular-nums}
+html body[data-page=rider] .status {background:var(--ui-success-soft);color:var(--ui-success);font-size:14px;font-weight:600;border:1px solid #cce8d8;border-radius:8px;padding:11px;text-align:center}
+html body[data-page=rider] .ticket-label {text-align:center}
+html body[data-page=rider] .summary {font-size:14px;font-weight:600;text-align:center}
+html body[data-page=rider] .help-text {font-size:12px;margin:16px 4px 22px}
+html body[data-page=rider] .help-card {display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;background:#fff;border:1px solid var(--ui-border);border-radius:12px;padding:20px;box-shadow:none}
+html body[data-page=rider] .help-card strong {font-size:15px;color:var(--ui-ink)}
+html body[data-page=rider] .help-card p {font-size:12px;color:var(--ui-muted);margin:3px 0 0}
+html body[data-page=rider] button.support {width:auto;min-height:44px;background:var(--ui-navy)!important;color:#fff!important;font-size:13px!important;border-radius:8px!important}
+html body[data-page=rider] .footnote,html body[data-page=rider] footer {font-size:11px;color:var(--ui-muted);text-align:center;margin-top:20px;font-weight:400}
+html body[data-page=rider] #message {font-size:13px;color:var(--ui-danger);margin-top:14px}
+html body[data-page=rider] #message.success {color:var(--ui-success);background:var(--ui-success-soft)}
+html body[data-page] :is(.ifc-browser-help,.ifc-browser-handoff) {border:1px solid var(--ui-border);border-radius:9px;background:#fff;padding:12px 14px;font-size:12px;color:var(--ui-muted);margin:0 0 20px}
+html body[data-page] .ifc-browser-help summary {color:var(--ui-muted);font-size:12px;cursor:pointer;min-height:24px}
+html body[data-page=kiosk]>main {max-width:620px;width:calc(100% - 40px);margin:40px auto;padding:36px!important;background:#fff;border:1px solid var(--ui-border);border-radius:14px;box-shadow:var(--ui-shadow)}
+html body[data-page=kiosk] #title {margin:14px 0;font-size:32px!important}
+html body[data-page=kiosk] #hint {font-size:16px;color:var(--ui-muted)}
+html body[data-page=kiosk] #view button {width:100%;min-height:52px;font-size:17px!important;margin:12px 0 0}
+html body[data-page=kiosk] #view input {min-height:56px;font-size:20px!important}
+html body[data-page=kiosk] footer {border-top:1px solid var(--ui-border);padding-top:18px;margin-top:24px}
+html body[data-page=kiosk] strong.num {font-size:80px;color:var(--ui-accent);line-height:1.2;font-variant-numeric:tabular-nums}
+html body[data-page=rider-call]>main {width:calc(100% - 32px);max-width:760px;margin:20px auto;padding:24px;background:#fff;border:1px solid var(--ui-border);border-radius:12px;box-shadow:var(--ui-shadow)}
+html body[data-page=rider-call] h1 {font-size:25px!important;margin:26px 0 18px}
+html body[data-page=rider-call] #state {padding:14px 16px;border:1px solid #e8d8cd;border-radius:9px;background:var(--ui-accent-soft);color:#874126;font-size:14px;font-weight:600}
+html body[data-page] dialog {border:1px solid var(--ui-border);border-radius:14px;padding:22px;color:var(--ui-ink);width:min(820px,calc(100vw - 24px));max-width:100%;height:90dvh;box-shadow:0 24px 90px #172b4333}
+html body[data-page] dialog::backdrop {background:#172b437a}
+html body[data-page] .dialog-head {display:flex;align-items:center;justify-content:space-between;gap:12px}
+html body[data-page] .dialog-head h2 {font-size:18px;margin:0}
+html body[data-page] dialog iframe {width:100%;border:1px solid var(--ui-border);border-radius:9px;height:calc(100% - 126px);background:var(--ui-bg)}
+
+/* Call desk and injected media controls */
+html body[data-page] #ifc-support-panel {font-family:var(--ui-font)!important;background:#fff!important;color:var(--ui-ink)!important;border:1px solid var(--ui-border)!important;border-radius:12px!important;box-shadow:var(--ui-shadow)!important;padding:22px!important;font-size:14px!important}
+html body[data-page=support] main #ifc-support-panel {position:static!important;width:100%!important;max-height:none!important;overflow:visible!important;margin-top:26px}
+html body[data-page=support] #ifc-support-panel h2 {font-size:18px!important;padding-bottom:16px;border-bottom:1px solid var(--ui-border)}
+html body[data-page] #ifc-support-panel .call-row {background:var(--ui-subtle);border:1px solid var(--ui-border);border-radius:10px;padding:18px;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+html body[data-page] #ifc-support-panel .call-row strong {font-size:14px;font-weight:650;color:var(--ui-ink)}
+html body[data-page] #ifc-support-panel>button[aria-pressed=true] {background:var(--ui-success-soft)!important;color:var(--ui-success)!important;border:1px solid #b8dcc7!important}
+html body[data-page] #ifc-support-panel>button[aria-pressed=false] {background:var(--ui-subtle)!important;color:var(--ui-ink)!important;border:1px solid var(--ui-border)!important}
+html body[data-page] #ifc-support-panel .call-row>.muted {flex-basis:100%;font-size:12px}
+html body[data-page] #ifc-support-panel :is(button,input,textarea) {font-family:var(--ui-font)!important;border-radius:8px!important}
+html body[data-page] #ifc-support-panel .videos {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+html body[data-page] #ifc-support-panel video {max-width:100%;background:var(--ui-navy);border-radius:10px}
+html body[data-page] .ifc-guest-call {border:1px solid var(--ui-border);border-radius:10px;padding:18px;background:#fff}
+html body[data-page] .ifc-call-cameras figcaption {font-size:12px;color:var(--ui-muted);font-weight:500}
+html body[data-page] #ifc-support-launch {font-size:13px!important;box-shadow:0 6px 24px #172b4324!important}
+
+@media (max-width:1250px) {
+  html body[data-page] .form-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  html body[data-page] .form-grid #btnCreate {align-self:end}
+  html body[data-page=desktop] .app>main {padding:24px!important}
+}
+@media (max-width:950px) {
+  html body[data-page=desktop] .app {display:block}
+  html body[data-page=desktop] .app>aside {position:static;width:100%!important;height:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(140px,220px);gap:14px;padding:18px 24px!important}
+  html body[data-page=desktop] aside .brand {margin:0}
+  html body[data-page=desktop] aside>label {align-self:end;margin:0}
+  html body[data-page=desktop] aside #warehouseSelect {grid-column:2;grid-row:1;width:100%;align-self:center}
+  html body[data-page=desktop] aside>label {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  html body[data-page=desktop] aside .nav-menu {grid-column:1/-1;grid-row:2;display:flex;flex-wrap:wrap;gap:8px;margin:0}
+  html body[data-page=desktop] aside .nav-link {flex:1;justify-content:center;white-space:normal;min-width:130px}
+  html body[data-page=desktop] aside :is(.version-box,.refresh-indicator,.contact-box) {display:none}
+  html body[data-page=desktop] aside .source-health-box {grid-column:1/-1;margin-top:0;padding-top:12px}
+  html body[data-page=desktop] aside .auth-user-box {grid-column:1;align-self:center}
+  html body[data-page=desktop] aside .auth-logout-button {grid-column:2;justify-self:end;margin:0}
+  html body[data-page=desktop] aside :is(#ifc-admin-link,#ifc-desk-link) {margin:0}
+  html body[data-page=desktop] .app>main {width:100%!important;margin-left:0!important;padding:24px!important}
+  html body[data-page] .rider-overview-toolbar {grid-template-columns:minmax(0,1fr)!important}
+}
+@media (max-width:640px) {
+  html body[data-page]>header {padding:16px!important;min-height:76px}
+  html body[data-page] .ui-brand-copy strong {font-size:17px}
+  html body[data-page] .ui-brand-copy>span {font-size:11px}
+  html body[data-page] .ui-topbar-label {display:none}
+  html body[data-page] .ui-topbar-links {gap:12px;font-size:12px}
+  html body[data-page] :is(.panel,.card) {padding:16px!important}
+  html body[data-page] .cards {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  html body[data-page] .main-status-cards .card {padding:14px!important}
+  html body[data-page] .main-status-cards .card .number {font-size:28px!important}
+  html body[data-page] .main-status-cards .card .label {font-size:10px!important}
+  html body[data-page] .toolbar {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:end!important}
+  html body[data-page] .toolbar>.ui-field:first-child,html body[data-page] .toolbar>input {grid-column:1/-1}
+  html body[data-page] .toolbar>.ui-field {width:100%}
+  html body[data-page] .toolbar>button {width:100%;padding:10px!important;font-size:12px!important}
+  html body[data-page] .form-grid {grid-template-columns:minmax(0,1fr)!important}
+  html body[data-page] .create-zone {padding:16px!important}
+  html body[data-page] .hold-ticket-search {grid-template-columns:minmax(0,1fr)!important}
+  html body[data-page] .ui-workspace-bar {margin-bottom:20px;padding-bottom:14px;align-items:flex-start;font-size:11px}
+  html body[data-page=desktop] .app>aside {padding:18px 16px!important;grid-template-columns:minmax(0,1fr) 110px}
+  html body[data-page=desktop] aside .nav-link {padding:9px 7px!important;font-size:12px!important;gap:7px;min-width:0;flex-basis:100%}
+  html body[data-page=desktop] .app>main,html body[data-page=mobile] .app>main {padding:20px 16px!important}
+  html body[data-page=admin]>main,html body[data-page=support]>main {width:calc(100% - 32px);margin:26px auto 40px}
+  html body[data-page=admin] .grid {grid-template-columns:minmax(0,1fr);gap:16px}
+  html body[data-page=admin] .card {padding:18px!important}
+  html body[data-page=admin] #account {max-width:100%;overflow-wrap:anywhere;display:block}
+  html body[data-page=login]>main {margin:32px auto;padding:26px!important}
+  html body[data-page=rider]>header {padding:16px!important}
+  html body[data-page=rider] .card {padding:24px!important}
+  html body[data-page=rider] h1 {font-size:27px!important}
+  html body[data-page=rider] .help-card {padding:18px;gap:14px}
+  html body[data-page=rider] button.support {width:100%}
+  html body[data-page=rider] .topline button {font-size:11px!important;padding:8px!important}
+  html body[data-page=kiosk]>main {margin:26px auto;padding:24px!important}
+  html body[data-page] #ifc-support-panel {padding:16px!important}
+  html body[data-page] .ifc-guest-call[data-agent=true] .ifc-call-cameras {grid-template-columns:minmax(0,1fr)}
+  html body[data-page] dialog {padding:16px}
+  html body[data-page] .dialog-head {align-items:flex-start}
+  html body[data-page] .dialog-head button {font-size:12px!important}
+}
+@media (prefers-reduced-motion:reduce) {
+  html body[data-page] *,html body[data-page] *::before,html body[data-page] *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media print {
+  html body[data-page] {background:#fff!important}
+  html body[data-page] :is(.ui-workspace-bar,.ui-topbar-links) {display:none!important}
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#142842"><title>IFC · Đăng ký lấy hàng</title>
+<link rel="stylesheet" href="/rider/pickup.css?v=0.7.0">
+</head>
+<body>
+<header><span class="brand">S</span><div><strong>IFC Handover</strong><span id="station">Đăng ký lấy hàng</span></div><span class="live">TẠI KHO</span></header>
+<main>
+<div id="browser-help"></div>
+<div class="topline"><span id="step">XIN CHÀO BÁC TÀI</span><button id="repeat" class="small" type="button">🔊 Nghe hướng dẫn</button></div>
+<section class="card" aria-labelledby="title"><h1 id="title">Đăng ký lấy hàng</h1><p id="hint">Đang kiểm tra mã QR…</p><div id="view"></div><div id="message" role="status" aria-live="polite"></div></section>
+<p class="help-text">Nhập từ <b>3 ký tự cuối</b> mã đơn trở lên. Có thể nhập mã đầy đủ.</p>
+<section class="help-card"><div><strong>Cần nhân viên giúp?</strong><p>Bấm nút bên dưới để gọi lễ tân.</p></div><button id="support" type="button" class="support" disabled>☎ Gọi hỗ trợ</button></section>
+<p id="voice-note" class="footnote">Bấm Bắt đầu để nghe giọng đọc hướng dẫn.</p>
+<footer>IFC_01 · Rider tự đăng ký · v0.7.0</footer>
+</main>
+<dialog id="support-dialog" aria-labelledby="support-title"><div class="dialog-head"><h2 id="support-title">Nhân viên hỗ trợ</h2><button id="close-support" class="small" type="button">Quay lại nhập đơn</button></div><p class="footnote">Thông tin đang nhập đã được giữ lại. Đóng khung này sẽ dừng cuộc gọi trên thiết bị.</p><iframe id="support-frame" title="Gọi lễ tân IFC" allow="camera; microphone; display-capture; autoplay"></iframe></dialog>
+<noscript>Hãy bật JavaScript và mở QR bằng Chrome hoặc Safari để đăng ký.</noscript>
+<script type="module" src="/rider/rider.js?v=0.7.0"></script>
+</body></html>
